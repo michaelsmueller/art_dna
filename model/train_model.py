@@ -1,5 +1,14 @@
 from model.data_loader import get_data_generators
 from model.model_builder import build_model
+import os
+import sys
+
+model_path = "model/art_style_classifier.keras"
+
+if os.path.exists(model_path):
+    print(f"❌ Model already exists at: {model_path}")
+    print("ℹ️ To retrain, delete the model manually or rename it.")
+    sys.exit(1)
 
 csv_path = "raw_data/labeled_data.csv"
 

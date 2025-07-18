@@ -11,18 +11,20 @@ run-backend:
 run-frontend:
 	streamlit run frontend/app.py
 
-# === DEV ===
+# === TRAINING ===
 
-dev:
-	@echo "Launching backend and frontend in parallel..."
-	@echo "Press Ctrl+C to stop."
-	# Requires 'concurrently' tool or use separate terminals manually
-	# See docs or README for manual run
+build-dataset:
+	python build_dataset.py --csv_path raw_data/labeled_data_expanded.csv
+
+train-model:
+	python train_model.py --csv_path raw_data/labeled_data_expanded.csv --model_path model/art_style_classifier.keras
 
 # === HELP ===
 
 help:
 	@echo "Usage:"
-	@echo "  make install         Install all dependencies"
-	@echo "  make run-backend     Run FastAPI backend (http://localhost:8000)"
-	@echo "  make run-frontend    Run Streamlit frontend (http://localhost:8501)"
+	@echo "  make install          Install all dependencies"
+	@echo "  make run-backend      Run FastAPI backend (http://localhost:8000)"
+	@echo "  make run-frontend     Run Streamlit frontend (http://localhost:8501)"
+	@echo "  make build-dataset    Build image dataset from CSV"
+	@echo "  make train-model      Train and save VGG16 model"
