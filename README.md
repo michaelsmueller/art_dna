@@ -11,6 +11,9 @@ make install
 # Create dataset (first time only)
 make build-dataset
 
+# Train model (first time only)
+make train-model
+
 # Run backend (terminal 1)
 make run-backend
 
@@ -20,9 +23,23 @@ make run-frontend
 
 Open `http://localhost:8501` to upload images and predict art styles.
 
+## Model Training & Evaluation
+
+```bash
+# Train the model (delete existing model first if retraining)
+make train-model
+
+# Evaluate model performance on test set
+make evaluate-model
+```
+
 ## Commands
 
 ```bash
-make help          # Show all commands
-make train-model   # Retrain model (delete existing model first)
+make help            # Show all commands
+make build-dataset   # Build image dataset from CSV
+make train-model     # Train and save VGG16 model
+make evaluate-model  # Evaluate model on test set
+make run-backend     # Run FastAPI backend
+make run-frontend    # Run Streamlit frontend
 ```
