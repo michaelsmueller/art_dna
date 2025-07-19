@@ -1,55 +1,61 @@
 import streamlit as st
-from PIL import Image
 import requests
-import os
+import io
 
-
-# URL of the backend API (to be connected later)
-API_URL = os.getenv("API_URL", "http://localhost:8000/predict")
+API_URL = "http://localhost:8000/predict"
+APP_VERSION = "v1.0.0"
 
 st.set_page_config(layout="wide")
+st.title("Art Style Classifier")
+st.markdown("Upload a painting image (JPEG/PNG). Click 'Predict Style' to predict the art style")
 
-# Page title and instructions
-st.title("Art DNA - Painting Style Predictor")
-st.markdown("Upload an image of a painting to predict its art styles.")
+debug_mode = st.checkbox("Debug Mode")
 
-# Image uploader
-uploaded_image = st.file_uploader("Upload a painting", type=["jpg", "jpeg", "png"])
+uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
-# If a file is uploaded, show layout
-if uploaded_image:
+if uploaded_file is not None:
+    left_col, right_col = st.columns(2)
 
-    col1, col2 = st.columns([1, 1])
+    with left_col:
+        st.image(uploaded_file, caption=" Uploaded Image", use_container_width=True)
 
-    # Load and display the uploaded image in the left column
-    image = Image.open(uploaded_image)
-    with col1:
-        st.image(image, use_container_width=True)
+    with right_col:
+        if st.button(" Predict genres"):
+            st.write(" Sending image to API...")
 
-    # Analyze button in the right column
-    with col2:
-        if st.button("🔍 Analyze Painting", use_container_width=True):
-            with st.spinner("Analyzing..."):
+            try:
+                img_bytes = uploaded_file.read()
+                files = {"image": (uploaded_file.name, io.BytesIO(img_bytes), uploaded_file.type)}
 
-                # Try sending the image to the API
-                try:
-                    response = requests.post(API_URL, files={"image": uploaded_image})
-                    if response.status_code == 200:
-                        prediction = response.json().get("predictions", {})
-                        prediction = {k: round(v * 100) for k, v in prediction.items()}
-                        st.success("✅ Prediction received from API!")
+                response = requests.post(API_URL, files=files)
+
+                # Always show top prediction if possible
+                if response.status_code == 200 and response.headers["content-type"] == "application/json":
+                    data = response.json()
+                    predictions = data.get("predictions")
+
+                    if not predictions:
+                        st.error("No 'predictions' in API response.")
                     else:
-                        raise ValueError("Invalid response")
+                        sorted_preds = sorted(predictions.items(), key=lambda x: x[1], reverse=True)
+                        top_preds = sorted_preds[:5]
 
-                except Exception:
-                    st.warning("⚠️ API not available — showing default prediction.")
-                    prediction = {
-                        "Impressionism": 70,
-                        "Cubism": 20,
-                        "Others": 10
-    }
+                        st.markdown("Top 5 Predictions:")
+                        for genre, confidence in top_preds:
+                            st.markdown(f"- **{genre}**: {round(confidence * 100)}%")
 
-            # Display prediction results as text
-            st.markdown("##### Predicted Styles")
-            for style, confidence in prediction.items():
-                st.markdown(f"- **{style}**: {confidence}%")
+                        if debug_mode:
+                            st.divider()
+                            st.markdown("Debug Info")
+                            st.write("Status Code:", response.status_code)
+                            st.write("Full JSON:")
+                            st.json(data)
+
+                else:
+                    st.error("API returned invalid content or status.")
+
+            except Exception as e:
+                st.error(f"Request failed: {e}")
+
+# Footer version
+st.markdown(f"<hr><small> App version: {APP_VERSION}</small>", unsafe_allow_html=True)

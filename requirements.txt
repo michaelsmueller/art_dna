@@ -1,14 +1,19 @@
-# Backend dependencies
-fastapi
-uvicorn
-python-multipart
-
-# Frontend dependencies
-streamlit
-requests
+# Core ML & Data
+keras
+numpy
+pandas
 pillow
-
-# Shared
-python-dotenv
 scikit-learn
+tensorflow
+
+# API
+fastapi
+python-multipart
+uvicorn
+
+# Frontend
+requests
+streamlit
+
+# Utils
 python-dotenv
