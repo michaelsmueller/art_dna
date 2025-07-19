@@ -15,7 +15,7 @@ artists_df["genre"] = artists_df["genre"].fillna("").apply(
 artist_to_genres = dict(zip(artists_df["normalized_name"], artists_df["genre"]))
 
 # Load image filenames
-image_dir = Path("raw_data/resized/resized")
+image_dir = Path("raw_data/resized")
 image_files = list(image_dir.glob("*.jpg"))
 
 # Build final dataset
