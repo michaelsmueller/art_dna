@@ -14,6 +14,9 @@ make build-dataset
 # Train model (first time only)
 make train-model
 
+# Evaluate model performance on test set
+make evaluate-model
+
 # Run backend (terminal 1)
 make run-backend
 
@@ -22,16 +25,6 @@ make run-frontend
 ```
 
 Open `http://localhost:8501` to upload images and predict art styles.
-
-## Model Training & Evaluation
-
-```bash
-# Train the model (delete existing model first if retraining)
-make train-model
-
-# Evaluate model performance on test set
-make evaluate-model
-```
 
 ## Commands
 
