@@ -10,6 +10,7 @@ help:
 	@echo "  make run-frontend     Run Streamlit frontend (http://localhost:8501)"
 	@echo "  make build-dataset    Build image dataset from CSV"
 	@echo "  make train-model      Train and save VGG16 model"
+	@echo "  make evaluate-model   Evaluate model on test set"
 
 # === INSTALL ===
 
@@ -31,6 +32,11 @@ build-dataset:
 
 train-model:
 	python model/train_model.py
+
+# === EVALUATE ===
+
+evaluate-model:
+	python model/evaluate_model.py
 
 # === LOCAL DOCKER ===
 
