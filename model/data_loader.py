@@ -36,7 +36,7 @@ def get_data_generators(csv_path, include_test=False):
     )
 
     train_gen = create_generator(train_df, shuffle=True)
-    val_gen = create_generator(val_df, shuffle=True)
+    val_gen = create_generator(val_df, shuffle=False)
 
     if include_test:
         test_gen = create_generator(test_df, shuffle=False)

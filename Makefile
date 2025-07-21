@@ -10,6 +10,7 @@ help:
 	@echo "  make run-frontend     Run Streamlit frontend (http://localhost:8501)"
 	@echo "  make build-dataset    Build image dataset from CSV"
 	@echo "  make train-model      Train and save VGG16 model"
+	@echo "  make evaluate-model   Evaluate model on test set"
 
 # === INSTALL ===
 
@@ -61,4 +62,3 @@ deploy_to_cloud_run:
 		--image ${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT}/${ARTIFACTSREPO}/${IMAGE}:prod \
 		--memory ${MEMORY} \
 		--region ${GCP_REGION}
-	@echo "  make evaluate-model   Evaluate model on test set"
