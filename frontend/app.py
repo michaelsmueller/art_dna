@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import io
 
-API_URL_PRIMARY = "https://art-dna-api-521843227251.europe-west1.run.app/"
+API_URL_PRIMARY = "https://art-dna-api-521843227251.europe-west1.run.app/predict"
 API_URL_FALLBACK = "http://localhost:8000/predict"
 APP_VERSION = "v1.0.0"
 
