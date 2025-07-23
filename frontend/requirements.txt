@@ -1,5 +1,4 @@
+-r ../shared.txt
 streamlit
-pillow
-numpy
-pandas
-scikit-learn
+requests
+

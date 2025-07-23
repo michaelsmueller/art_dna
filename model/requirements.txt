@@ -1,6 +1,3 @@
+-r ../shared.txt
 tensorflow
 keras
-numpy
-pandas
-pillow
-scikit-learn
