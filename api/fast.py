@@ -1,3 +1,11 @@
+"""
+Art DNA API - FastAPI backend for art style classification.
+
+Provides endpoints for:
+- Image prediction using VGG16 model
+- Genre descriptions for educational context
+"""
+
 import io
 from typing import Dict, Any
 import numpy as np
@@ -21,12 +29,13 @@ app.add_middleware(
 # Load model and class names once at startup
 model = load_model("model/art_style_classifier.keras")
 
-with open("model/class_names.txt", "r") as f:
+with open("model/class_names.txt", "r", encoding="utf-8") as f:
     class_names = [line.strip() for line in f.readlines()]
 
 
 @app.get("/")
 def root():
+    """Health check endpoint"""
     return {"greeting": "Hello"}
 
 
@@ -67,6 +76,11 @@ def describe_genres(
 
 @app.post("/predict")
 def predict(image: UploadFile = File(...)) -> Dict[str, Dict[str, float]]:
+    """
+    Predict art style from uploaded image.
+
+    Returns probabilities for all 24 art genres.
+    """
     try:
         # Read and decode the uploaded image
         image_bytes = image.file.read()
@@ -86,6 +100,6 @@ def predict(image: UploadFile = File(...)) -> Dict[str, Dict[str, float]]:
         return {"predictions": predictions}
 
     except UnidentifiedImageError as e:
-        raise HTTPException(status_code=400, detail=f"Invalid image file: {e}")
+        raise HTTPException(status_code=400, detail=f"Invalid image file: {e}") from e
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Prediction failed: {e}")
+        raise HTTPException(status_code=500, detail=f"Prediction failed: {e}") from e
