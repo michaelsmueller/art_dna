@@ -1,11 +1,17 @@
 FROM python:3.10-slim
 
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+# Copy all requirements files
+COPY shared.txt shared.txt
+COPY api/requirements.txt api/requirements.txt
+COPY model/requirements.txt model/requirements.txt
 
+# Install dependencies
+RUN pip install -r shared.txt -r api/requirements.txt -r model/requirements.txt
+
+# Copy application code
 COPY api api
-COPY frontend frontend
 COPY model model
-COPY preprocessing_package preprocessing_package
 
-CMD uvicorn api.fast:app --host 0.0.0.0 --port $PORT
+# Expose port and run
+EXPOSE 8000
+CMD ["uvicorn", "api.fast:app", "--host", "0.0.0.0", "--port", "8000"]
