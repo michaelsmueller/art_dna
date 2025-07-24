@@ -41,35 +41,37 @@ def root():
 
 @app.get("/describe")
 def describe_genres(
-    genres: str = Query(..., description="Comma-separated genre names"),
-    audience: str = Query("adult", description="Target audience: 'adult' or 'kid'"),
+    genres: str = Query(...), audience: str = Query("adult")
 ) -> Dict[str, Any]:
     """Get descriptions for one or more art genres"""
-
-    # Parse genres
     genre_list = [g.strip() for g in genres.split(",")]
 
     # Validate audience
-    if audience not in ["adult", "kid"]:
+    if audience not in DESCRIPTIONS:
         raise HTTPException(status_code=400, detail="Audience must be 'adult' or 'kid'")
 
-    # Get descriptions
-    descriptions = []
-    for genre in genre_list:
-        if genre in DESCRIPTIONS[audience]:
-            descriptions.append(DESCRIPTIONS[audience][genre])
-        else:
-            # Return placeholder for missing genres
-            descriptions.append(
-                {
-                    "genre": genre,
-                    "description": f"Description for {genre} not available yet",
-                    "time_period": "TBD",
-                    "key_artists": [],
-                    "visual_elements": [],
-                    "philosophy": "Coming soon",
-                }
-            )
+    # Validate genres against known class names
+    invalid_genres = [g for g in genre_list if g not in class_names]
+    if invalid_genres:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid genres: {', '.join(invalid_genres)}. Valid genres: {', '.join(class_names)}",
+        )
+
+    descriptions = [
+        DESCRIPTIONS[audience].get(
+            genre,
+            {
+                "genre": genre,
+                "description": f"Description for {genre} coming soon!",
+                "time_period": "TBD",
+                "key_artists": [],
+                "visual_elements": [],
+                "philosophy": "Coming soon",
+            },
+        )
+        for genre in genre_list
+    ]
 
     return {"audience": audience, "descriptions": descriptions}
 
