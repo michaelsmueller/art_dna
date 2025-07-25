@@ -1,0 +1,4 @@
+-r ../shared.txt
+fastapi
+uvicorn
+python-multipart
