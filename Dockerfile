@@ -18,6 +18,6 @@ ENV PYTHONPATH=/
 COPY api api
 COPY model model
 
-# Expose port and run
-EXPOSE 8000
-CMD ["uvicorn", "api.fast:app", "--host", "0.0.0.0", "--port", "8000"]
+# Cloud Run provides PORT environment variable
+EXPOSE $PORT
+CMD uvicorn api.fast:app --host 0.0.0.0 --port $PORT
