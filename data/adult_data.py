@@ -47,7 +47,7 @@ adult_data = [
         "time_period": "1905-1925",
         "key_artists": '["Wassily Kandinsky", "Ernst Ludwig Kirchner", "Edvard Munch"]',
         "visual_elements": '["Bold, non-naturalistic colors", "Distorted forms", "Thick brushstrokes", "Angular shapes"]',
-        "philosophy": "Emotion and personal expression over realistic representation",
+        "philosophy": "Emotion and personal expression over realistic representation.",
     },
     {
         "genre": "Impressionism",

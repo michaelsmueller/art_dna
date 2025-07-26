@@ -11,7 +11,7 @@ from typing import Dict, Any
 import numpy as np
 from fastapi import FastAPI, File, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 from PIL import Image, UnidentifiedImageError
 
 from api.descriptions import DESCRIPTIONS
