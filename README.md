@@ -40,6 +40,7 @@ Open `http://localhost:8501` to upload images and predict art styles.
 ## API
 
 - `POST /predict` - Upload image, returns probabilities for 18 art genres
+- `POST /similar` - Upload image, returns 5 visually similar artworks with metadata
 - `GET /describe` - Get educational descriptions for genres (adult/kid audience)
 - Live demo: [art-dna-api.run.app](https://art-dna-api-521843227251.europe-west1.run.app)
 

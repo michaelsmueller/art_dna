@@ -62,3 +62,4 @@ deploy_to_cloud_run:
 		--image ${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT}/${ARTIFACTSREPO}/${IMAGE}:prod \
 		--memory ${MEMORY} \
 		--region ${GCP_REGION}
+		--set-env-vars USE_GCS=true
