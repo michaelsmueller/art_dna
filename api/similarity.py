@@ -28,7 +28,9 @@ class SimilarityService:
         model_name = "facebook/deit-base-distilled-patch16-224"
 
         try:
-            self.feature_extractor = AutoImageProcessor.from_pretrained(model_name)
+            self.feature_extractor = AutoImageProcessor.from_pretrained(
+                model_name, use_fast=True
+            )
             self.model = AutoModel.from_pretrained(model_name).to(self.device)
             self.model.eval()  # Set to evaluation mode
             print(f"✅ DeiT model loaded on {self.device}")
