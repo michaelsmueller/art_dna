@@ -9,6 +9,7 @@ Provides endpoints for:
 from typing import Any, Dict
 
 import io
+import os
 import numpy as np
 
 from fastapi import FastAPI, File, HTTPException, Query, UploadFile
@@ -28,6 +29,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Only mount static files for local development
+if os.getenv("USE_GCS", "false").lower() != "true":
+    from fastapi.staticfiles import StaticFiles
+
+    app.mount("/static", StaticFiles(directory="."), name="static")
+    print("📁 Static files mounted for local development")
 
 # Load model and class names once at startup
 model = load_model("model/art_style_classifier.keras", compile=False)
