@@ -38,11 +38,11 @@ class SimilarityService:
     def load_embeddings(self):
         """Load precomputed embeddings and image paths"""
         try:
-            embeddings_path = "api/embeddings/deit_embeddings.npy"
-            paths_path = "api/embeddings/deit_paths.npy"
+            embeddings_path = "embeddings/deit_embeddings.npy"
+            paths_path = "embeddings/deit_paths.npy"
 
             if not os.path.exists(embeddings_path) or not os.path.exists(paths_path):
-                raise FileNotFoundError(f"Embedding files not found in api/embeddings/")
+                raise FileNotFoundError(f"Embedding files not found in embeddings/")
 
             self.embeddings = np.load(embeddings_path)
             self.image_paths = np.load(paths_path, allow_pickle=True)
