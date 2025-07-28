@@ -27,7 +27,7 @@ app.add_middleware(
 )
 
 # Load model and class names once at startup
-model = load_model("model/art_style_classifier.keras")
+model = load_model("model/art_style_classifier.keras", compile=False)
 
 with open("model/class_names.txt", "r", encoding="utf-8") as f:
     class_names = [line.strip() for line in f.readlines()]
