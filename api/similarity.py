@@ -135,6 +135,7 @@ class SimilarityService:
                 # Build result with metadata
                 result = {
                     "filename": filename,
+                    "image_url": self.generate_image_url(filename),
                     "similarity_score": float(round(similarities[idx], 4)),
                 }
 
@@ -165,3 +166,15 @@ class SimilarityService:
 
         except Exception as e:
             raise RuntimeError(f"Failed to find similar images: {e}")
+
+    def generate_image_url(self, filename: str) -> str:
+        """Generate image URL based on deployment environment"""
+        use_gcs = os.getenv("USE_GCS", "false").lower() == "true"
+
+        if use_gcs:
+            # Production: GCS public URL
+            bucket_name = "art-dna-ml-data"
+            return f"https://storage.googleapis.com/{bucket_name}/{filename}"
+        else:
+            # Local: static file URL
+            return f"/static/raw_data/resized/{filename}"
