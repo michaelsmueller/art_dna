@@ -95,7 +95,7 @@ def predict(image: UploadFile = File(...)) -> Dict[str, Dict[str, float]]:
     """
     Predict art style from uploaded image.
 
-    Returns probabilities for all 24 art genres.
+    Returns probabilities for all 18 art genres.
     """
     try:
         # Read and decode the uploaded image

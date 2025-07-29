@@ -176,7 +176,7 @@ class SimilarityService:
         if use_gcs:
             # Production: GCS public URL
             bucket_name = "art-dna-ml-data"
-            return f"https://storage.googleapis.com/{bucket_name}/{filename}"
+            return f"https://storage.googleapis.com/{bucket_name}/raw_data/resized/{filename}"
         else:
             # Local: static file URL
             return f"/static/raw_data/resized/{filename}"
