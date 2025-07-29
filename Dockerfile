@@ -8,15 +8,15 @@ COPY model/requirements.txt model/requirements.txt
 # Install dependencies
 RUN pip install -r shared.txt -r api/requirements.txt -r model/requirements.txt
 
-# Make sure data directory is copied
-COPY data/ /data/
-
 # Set Python path to include the app root
 ENV PYTHONPATH=/
 
-# Copy application code
+# Copy application and data
 COPY api api
+COPY data/ /data/
 COPY model model
+COPY embeddings embeddings
+COPY raw_data/artists.csv raw_data/artists.csv
 
 # Cloud Run provides PORT environment variable
 EXPOSE $PORT
