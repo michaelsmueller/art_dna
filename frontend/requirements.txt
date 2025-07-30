@@ -1,4 +1,6 @@
 -r ../shared.txt
 streamlit
 requests
-
+torch
+torchvision
+transformers
