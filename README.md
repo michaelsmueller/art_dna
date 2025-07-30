@@ -4,14 +4,16 @@ Machine learning project to classify art styles from paintings using CNN transfe
 
 ## Overview
 
-- **Classification**: 18 art genres with probabilistic multi-label output
-- **Model**: VGG16 fine-tuned with transfer learning
-- **Descriptions**: Rich educational content for both adult and kid audiences
-- **API**: FastAPI backend with image upload and genre descriptions
+- **Multi-Label Classification**: 18 art genres with independent probabilities (sigmoid vs softmax)
+- **Visual Similarity Search**: DeiT embeddings find artworks with shared visual features
+- **Interactive Frontend**: "Art Style Explorer" with real-time analysis
+- **Production API**: Deployed on Google Cloud Run with 1,000+ artwork embeddings
 
 ## Prerequisites
 
 - Python 3.10+
+
+- Docker (for containerized deployment)
 - Download [Best Artworks of All Time](https://www.kaggle.com/datasets/ikarus777/best-artworks-of-all-time/data) dataset
 
 ## Setup
@@ -37,17 +39,18 @@ make run-frontend
 
 Open `http://localhost:8501` to upload images and predict art styles.
 
-## API
+## API Endpoints
 
-- `POST /predict` - Upload image, returns probabilities for 18 art genres
-- `POST /similar` - Upload image, returns 5 visually similar artworks with metadata
-- `GET /describe` - Get educational descriptions for genres (adult/kid audience)
-- Live demo: [art-dna-api.run.app](https://art-dna-api-521843227251.europe-west1.run.app)
+**Production**: `https://art-dna-api-521843227251.europe-west1.run.app`
+
+- `POST /predict` - Multi-label style classification
+- `POST /similar` - Visual similarity search (top 5)
+- `GET /describe` - Educational genre descriptions
 
 ## Train & Evaluate
 
 ```bash
-# Train model (first time only, ~10-15 minutes)
+# Train model (first time only)
 make train-model
 
 # Evaluate model performance on test set
@@ -78,9 +81,20 @@ make run-backend     # Run FastAPI backend
 make run-frontend    # Run Streamlit frontend
 ```
 
+## Art Genres
+
+Abstractionism, Art Nouveau, Baroque, Byzantine Art, Cubism, Expressionism, Impressionism, Mannerism, Muralism, Neoplasticism, Pop Art, Primitivism, Realism, Renaissance, Romanticism, Suprematism, Surrealism, Symbolism
+
+## Architecture
+
+- **Classification**: Fine-tuned VGG16 with weighted loss for class balance
+- **Similarity**: DeiT vision transformer (768-dim embeddings)
+- **Dataset**: 7,600+ paintings, 50 artists, 18 simplified genres
+- **Deployment**: Cloud Run + GCS model storage
+
 ## Team
 
-- [Adriana]()
+- [Adriana](https://github.com/lady-hamster)
 - [Anna](https://github.com/AnnaShe78)
 - [Kristina](https://github.com/TinaKgn)
 - [Marc](https://github.com/MarcRenard)
