@@ -178,5 +178,5 @@ class SimilarityService:
             bucket_name = "art-dna-ml-data"
             return f"https://storage.googleapis.com/{bucket_name}/raw_data/resized/{filename}"
         else:
-        # Local: return absolute path to file
+            # Local: return absolute path to file
             return os.path.join(os.getcwd(), "raw_data", "resized", filename)
