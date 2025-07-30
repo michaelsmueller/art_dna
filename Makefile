@@ -15,7 +15,7 @@ help:
 # === INSTALL ===
 
 install:
-	pip install -r frontend/requirements.txt -r api/requirements.txt -r model/requirements.txt
+	pip install -r frontend/requirements.txt -r api/requirements.txt
 
 # === RUN ===
 
