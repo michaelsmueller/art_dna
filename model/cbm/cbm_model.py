@@ -11,15 +11,7 @@ from tensorflow.keras import layers
 import numpy as np
 
 
-def create_data_augmentation():
-    """Create data augmentation layers"""
-    return tf.keras.Sequential(
-        [
-            layers.RandomFlip("horizontal"),
-            layers.RandomRotation(0.05),
-            layers.RandomZoom(0.1),
-        ]
-    )
+# Data augmentation removed - will be applied in training pipeline instead
 
 
 def build_cbm_model(num_concepts=64, num_styles=18, input_shape=(224, 224, 3)):
@@ -44,17 +36,11 @@ def build_cbm_model(num_concepts=64, num_styles=18, input_shape=(224, 224, 3)):
     )
     backbone.trainable = False  # Freeze for stable training
 
-    # Data augmentation
-    data_augmentation = create_data_augmentation()
-
     # Model architecture
     inputs = layers.Input(shape=input_shape)
 
-    # Apply data augmentation
-    x = data_augmentation(inputs)
-
-    # EfficientNet-B3 feature extraction
-    x = backbone(x)  # Output: (batch, H, W, 1536)
+    # EfficientNet-B3 feature extraction (no augmentation)
+    x = backbone(inputs)  # Output: (batch, H, W, 1536)
 
     # Global Average Pooling to flatten spatial dimensions
     x = layers.GlobalAveragePooling2D()(x)  # Output: (batch, 1536)

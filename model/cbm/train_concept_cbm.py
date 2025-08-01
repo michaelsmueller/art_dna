@@ -10,16 +10,26 @@ import tensorflow as tf
 from sklearn.model_selection import train_test_split
 
 
-def process_image(file_path, labels):
-    """Simple image processing"""
+def process_image(file_path, labels, augment=False):
+    """Image processing with optional augmentation"""
     image = tf.io.read_file(file_path)
     image = tf.image.decode_jpeg(image, channels=3)
     image = tf.image.resize(image, [224, 224])
     image = tf.cast(image, tf.float32) / 255.0
+
+    # Apply augmentation if training
+    if augment:
+        image = tf.image.random_flip_left_right(image)
+        image = tf.image.random_brightness(image, 0.1)
+        image = tf.image.random_contrast(image, 0.9, 1.1)
+        # Random rotation (approximate with small crop+resize)
+        image = tf.image.random_crop(image, [210, 210, 3])
+        image = tf.image.resize(image, [224, 224])
+
     return image, labels
 
 
-def create_dataset(df, class_names, batch_size=16, shuffle=True):
+def create_dataset(df, class_names, batch_size=16, shuffle=True, augment=False):
     """Create dataset with dual outputs (concepts + styles)"""
     image_paths = df["image_path"].values
     style_labels = df[class_names].values.astype(np.float32)
@@ -34,7 +44,7 @@ def create_dataset(df, class_names, batch_size=16, shuffle=True):
 
     def process_with_dual_labels(file_path, labels):
         concept_labels, style_labels = labels
-        image, _ = process_image(file_path, None)
+        image, _ = process_image(file_path, None, augment=augment)
         return image, {"concepts": concept_labels, "styles": style_labels}
 
     dataset = dataset.map(process_with_dual_labels, num_parallel_calls=tf.data.AUTOTUNE)
@@ -75,8 +85,15 @@ def train_concept_cbm():
 
     # Create datasets with dual outputs
     batch_size = 16
-    train_dataset = create_dataset(train_df, CLASS_NAMES, batch_size, shuffle=True)
-    val_dataset = create_dataset(val_df, CLASS_NAMES, batch_size, shuffle=False)
+    print(f"🔄 Creating datasets with augmentation...")
+    train_dataset = create_dataset(
+        train_df, CLASS_NAMES, batch_size, shuffle=True, augment=True
+    )
+    val_dataset = create_dataset(
+        val_df, CLASS_NAMES, batch_size, shuffle=False, augment=False
+    )
+    print(f"   ✅ Train dataset: augmentation=ON")
+    print(f"   ✅ Val dataset: augmentation=OFF")
 
     # Create CBM model with dual outputs
     model = create_cbm_compiled(num_concepts=64, num_styles=18, learning_rate=1e-4)
