@@ -1,5 +1,0 @@
-pillow
-numpy
-pandas
-scikit-learn
-tensorflow

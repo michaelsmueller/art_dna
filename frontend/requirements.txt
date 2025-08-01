@@ -1,4 +1,4 @@
--r ../shared.txt
+-r ../requirements.txt
 streamlit
 requests
 

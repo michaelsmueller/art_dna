@@ -1,7 +1,6 @@
--r ../shared.txt
+-r ../requirements.txt
 fastapi
 uvicorn
-python-multipart
-torch
-torchvision
+
+# DeiT Similarity
 transformers
