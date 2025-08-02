@@ -1,0 +1,9 @@
+{
+  "total_original": 8027,
+  "total_sample": 509,
+  "target_size": 500,
+  "min_per_genre": 8,
+  "genres": 18,
+  "sample_file": "model/cbm/validation_sample_500.csv",
+  "created_for": "validation_scale_concept_extraction"
+}

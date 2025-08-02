@@ -1,0 +1,510 @@
+image_path,artist_name,Abstractionism,Art Nouveau,Baroque,Byzantine Art,Cubism,Expressionism,Impressionism,Mannerism,Muralism,Neoplasticism,Pop Art,Primitivism,Realism,Renaissance,Romanticism,Suprematism,Surrealism,Symbolism
+raw_data/resized/Paul_Klee_126.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Paul_Klee_41.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Vasiliy_Kandinskiy_17.jpg,Vasiliy Kandinskiy,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Klee_44.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Vasiliy_Kandinskiy_35.jpg,Vasiliy Kandinskiy,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vasiliy_Kandinskiy_51.jpg,Vasiliy Kandinskiy,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Klee_6.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Vasiliy_Kandinskiy_23.jpg,Vasiliy Kandinskiy,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vasiliy_Kandinskiy_7.jpg,Vasiliy Kandinskiy,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Klee_59.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Paul_Klee_170.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Paul_Klee_49.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Vasiliy_Kandinskiy_54.jpg,Vasiliy Kandinskiy,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vasiliy_Kandinskiy_8.jpg,Vasiliy Kandinskiy,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Gustav_Klimt_33.jpg,Gustav Klimt,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Gustav_Klimt_102.jpg,Gustav Klimt,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Gustav_Klimt_41.jpg,Gustav Klimt,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Gustav_Klimt_31.jpg,Gustav Klimt,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Gustav_Klimt_108.jpg,Gustav Klimt,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Gustav_Klimt_70.jpg,Gustav Klimt,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Gustav_Klimt_59.jpg,Gustav Klimt,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Gustav_Klimt_79.jpg,Gustav Klimt,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Rembrandt_64.jpg,Rembrandt,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Diego_Velazquez_115.jpg,Diego Velazquez,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rembrandt_169.jpg,Rembrandt,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Peter_Paul_Rubens_47.jpg,Peter Paul Rubens,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rembrandt_19.jpg,Rembrandt,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Peter_Paul_Rubens_73.jpg,Peter Paul Rubens,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Peter_Paul_Rubens_29.jpg,Peter Paul Rubens,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Diego_Velazquez_1.jpg,Diego Velazquez,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rembrandt_178.jpg,Rembrandt,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Caravaggio_18.jpg,Caravaggio,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Peter_Paul_Rubens_11.jpg,Peter Paul Rubens,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Peter_Paul_Rubens_69.jpg,Peter Paul Rubens,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rembrandt_114.jpg,Rembrandt,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Peter_Paul_Rubens_62.jpg,Peter Paul Rubens,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Peter_Paul_Rubens_107.jpg,Peter Paul Rubens,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rembrandt_15.jpg,Rembrandt,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rembrandt_59.jpg,Rembrandt,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Caravaggio_37.jpg,Caravaggio,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Peter_Paul_Rubens_14.jpg,Peter Paul Rubens,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rembrandt_90.jpg,Rembrandt,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rembrandt_41.jpg,Rembrandt,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rembrandt_148.jpg,Rembrandt,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rembrandt_94.jpg,Rembrandt,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Diego_Velazquez_114.jpg,Diego Velazquez,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Diego_Velazquez_106.jpg,Diego Velazquez,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Andrei_Rublev_66.jpg,Andrei Rublev,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Andrei_Rublev_46.jpg,Andrei Rublev,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Andrei_Rublev_96.jpg,Andrei Rublev,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Andrei_Rublev_26.jpg,Andrei Rublev,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Andrei_Rublev_98.jpg,Andrei Rublev,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Andrei_Rublev_86.jpg,Andrei Rublev,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Andrei_Rublev_68.jpg,Andrei Rublev,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Andrei_Rublev_48.jpg,Andrei Rublev,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_338.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_17.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_411.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_329.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_394.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_361.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_265.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_173.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_95.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_68.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_303.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_167.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_296.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_60.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_407.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_168.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_94.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_273.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_165.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_238.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_107.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pablo_Picasso_258.jpg,Pablo Picasso,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Klee_129.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Amedeo_Modigliani_169.jpg,Amedeo Modigliani,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Klee_169.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Amedeo_Modigliani_180.jpg,Amedeo Modigliani,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vasiliy_Kandinskiy_4.jpg,Vasiliy Kandinskiy,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edvard_Munch_24.jpg,Edvard Munch,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Amedeo_Modigliani_84.jpg,Amedeo Modigliani,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edvard_Munch_60.jpg,Edvard Munch,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Vasiliy_Kandinskiy_61.jpg,Vasiliy Kandinskiy,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vasiliy_Kandinskiy_33.jpg,Vasiliy Kandinskiy,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Amedeo_Modigliani_104.jpg,Amedeo Modigliani,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vasiliy_Kandinskiy_43.jpg,Vasiliy Kandinskiy,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Klee_61.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Paul_Klee_63.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Vasiliy_Kandinskiy_74.jpg,Vasiliy Kandinskiy,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vasiliy_Kandinskiy_45.jpg,Vasiliy Kandinskiy,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vasiliy_Kandinskiy_44.jpg,Vasiliy Kandinskiy,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Amedeo_Modigliani_149.jpg,Amedeo Modigliani,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vasiliy_Kandinskiy_22.jpg,Vasiliy Kandinskiy,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vasiliy_Kandinskiy_32.jpg,Vasiliy Kandinskiy,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Amedeo_Modigliani_164.jpg,Amedeo Modigliani,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Amedeo_Modigliani_72.jpg,Amedeo Modigliani,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vasiliy_Kandinskiy_83.jpg,Vasiliy Kandinskiy,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Amedeo_Modigliani_82.jpg,Amedeo Modigliani,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Klee_117.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Amedeo_Modigliani_100.jpg,Amedeo Modigliani,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vasiliy_Kandinskiy_1.jpg,Vasiliy Kandinskiy,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Amedeo_Modigliani_91.jpg,Amedeo Modigliani,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Henri_Matisse_66.jpg,Henri Matisse,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_771.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pierre-Auguste_Renoir_138.jpg,Pierre-Auguste Renoir,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_784.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Henri_Matisse_178.jpg,Henri Matisse,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_615.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rene_Magritte_58.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Alfred_Sisley_81.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Alfred_Sisley_49.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_790.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_741.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_57.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pierre-Auguste_Renoir_215.jpg,Pierre-Auguste Renoir,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_490.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_548.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rene_Magritte_150.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Camille_Pissarro_76.jpg,Camille Pissarro,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_89.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_596.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rene_Magritte_93.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Pierre-Auguste_Renoir_78.jpg,Pierre-Auguste Renoir,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pierre-Auguste_Renoir_212.jpg,Pierre-Auguste Renoir,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Cezanne_29.jpg,Paul Cezanne,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_344.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Gauguin_292.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Alfred_Sisley_22.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_587.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_187.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edouard_Manet_19.jpg,Edouard Manet,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0
+raw_data/resized/Alfred_Sisley_146.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Georges_Seurat_34.jpg,Georges Seurat,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Henri_de_Toulouse-Lautrec_69.jpg,Henri de Toulouse-Lautrec,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Georges_Seurat_19.jpg,Georges Seurat,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Alfred_Sisley_171.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_373.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_445.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_680.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_624.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edouard_Manet_87.jpg,Edouard Manet,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0
+raw_data/resized/Paul_Gauguin_194.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Camille_Pissarro_45.jpg,Camille Pissarro,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_723.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_381.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Gauguin_142.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Henri_Matisse_97.jpg,Henri Matisse,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rene_Magritte_158.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Vincent_van_Gogh_375.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Alfred_Sisley_126.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_492.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Alfred_Sisley_224.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_352.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_479.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Cezanne_4.jpg,Paul Cezanne,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_672.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pierre-Auguste_Renoir_312.jpg,Pierre-Auguste Renoir,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_745.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Gauguin_86.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Vincent_van_Gogh_594.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rene_Magritte_146.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Paul_Gauguin_89.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Vincent_van_Gogh_685.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Henri_Matisse_29.jpg,Henri Matisse,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_239.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_786.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Alfred_Sisley_97.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Alfred_Sisley_162.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_257.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_553.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rene_Magritte_123.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Vincent_van_Gogh_44.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_542.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_308.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pierre-Auguste_Renoir_233.jpg,Pierre-Auguste Renoir,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Camille_Pissarro_28.jpg,Camille Pissarro,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_76.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_317.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edouard_Manet_51.jpg,Edouard Manet,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_858.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Camille_Pissarro_89.jpg,Camille Pissarro,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_227.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Gauguin_299.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Edgar_Degas_449.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_59.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_713.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rene_Magritte_163.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Henri_de_Toulouse-Lautrec_67.jpg,Henri de Toulouse-Lautrec,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_15.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pierre-Auguste_Renoir_120.jpg,Pierre-Auguste Renoir,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Gauguin_42.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Camille_Pissarro_37.jpg,Camille Pissarro,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_477.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Henri_Matisse_124.jpg,Henri Matisse,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Camille_Pissarro_7.jpg,Camille Pissarro,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pierre-Auguste_Renoir_119.jpg,Pierre-Auguste Renoir,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_99.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_263.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Alfred_Sisley_183.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_329.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Henri_Matisse_81.jpg,Henri Matisse,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Alfred_Sisley_114.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_843.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_495.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_429.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_179.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pierre-Auguste_Renoir_313.jpg,Pierre-Auguste Renoir,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_241.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Henri_Matisse_27.jpg,Henri Matisse,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Alfred_Sisley_30.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Henri_Matisse_70.jpg,Henri Matisse,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_390.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_110.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Gauguin_241.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Alfred_Sisley_82.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rene_Magritte_127.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Alfred_Sisley_191.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_558.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_572.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Alfred_Sisley_128.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Henri_Matisse_152.jpg,Henri Matisse,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pierre-Auguste_Renoir_163.jpg,Pierre-Auguste Renoir,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Henri_Matisse_117.jpg,Henri Matisse,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Alfred_Sisley_252.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Camille_Pissarro_6.jpg,Camille Pissarro,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_58.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_22.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Alfred_Sisley_31.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pierre-Auguste_Renoir_18.jpg,Pierre-Auguste Renoir,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_429.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edouard_Manet_70.jpg,Edouard Manet,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0
+raw_data/resized/Edgar_Degas_342.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_618.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_306.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Alfred_Sisley_98.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Alfred_Sisley_168.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_193.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pierre-Auguste_Renoir_9.jpg,Pierre-Auguste Renoir,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_443.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_509.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pierre-Auguste_Renoir_67.jpg,Pierre-Auguste Renoir,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Camille_Pissarro_55.jpg,Camille Pissarro,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_404.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_452.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Gauguin_164.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Vincent_van_Gogh_482.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Gauguin_20.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Vincent_van_Gogh_363.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_234.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Henri_Matisse_4.jpg,Henri Matisse,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Gauguin_53.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Edgar_Degas_135.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Alfred_Sisley_39.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Pierre-Auguste_Renoir_209.jpg,Pierre-Auguste Renoir,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_381.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edouard_Manet_67.jpg,Edouard Manet,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0
+raw_data/resized/Edouard_Manet_73.jpg,Edouard Manet,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0
+raw_data/resized/Edgar_Degas_13.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_208.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rene_Magritte_6.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Rene_Magritte_29.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Edgar_Degas_133.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Paul_Gauguin_17.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Vincent_van_Gogh_664.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Rene_Magritte_132.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Vincent_van_Gogh_795.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Vincent_van_Gogh_622.jpg,Vincent van Gogh,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Edgar_Degas_69.jpg,Edgar Degas,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Alfred_Sisley_72.jpg,Alfred Sisley,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Camille_Pissarro_39.jpg,Camille Pissarro,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Claude_Monet_68.jpg,Claude Monet,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Titian_234.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_125.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_122.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/El_Greco_48.jpg,El Greco,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Titian_134.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_39.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_185.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_182.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_97.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/El_Greco_32.jpg,El Greco,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0
+raw_data/resized/Titian_132.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_221.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_57.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_32.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_119.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_158.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_127.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Diego_Rivera_3.jpg,Diego Rivera,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0
+raw_data/resized/Diego_Rivera_1.jpg,Diego Rivera,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0
+raw_data/resized/Diego_Rivera_54.jpg,Diego Rivera,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0
+raw_data/resized/Diego_Rivera_13.jpg,Diego Rivera,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0
+raw_data/resized/Diego_Rivera_59.jpg,Diego Rivera,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0
+raw_data/resized/Diego_Rivera_26.jpg,Diego Rivera,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0
+raw_data/resized/Diego_Rivera_19.jpg,Diego Rivera,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0
+raw_data/resized/Diego_Rivera_4.jpg,Diego Rivera,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0
+raw_data/resized/Piet_Mondrian_76.jpg,Piet Mondrian,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+raw_data/resized/Piet_Mondrian_1.jpg,Piet Mondrian,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+raw_data/resized/Piet_Mondrian_62.jpg,Piet Mondrian,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+raw_data/resized/Piet_Mondrian_3.jpg,Piet Mondrian,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+raw_data/resized/Piet_Mondrian_20.jpg,Piet Mondrian,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+raw_data/resized/Piet_Mondrian_73.jpg,Piet Mondrian,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+raw_data/resized/Piet_Mondrian_19.jpg,Piet Mondrian,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+raw_data/resized/Piet_Mondrian_26.jpg,Piet Mondrian,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+raw_data/resized/Andy_Warhol_116.jpg,Andy Warhol,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+raw_data/resized/Andy_Warhol_137.jpg,Andy Warhol,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+raw_data/resized/Andy_Warhol_74.jpg,Andy Warhol,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+raw_data/resized/Andy_Warhol_17.jpg,Andy Warhol,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+raw_data/resized/Andy_Warhol_67.jpg,Andy Warhol,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+raw_data/resized/Andy_Warhol_112.jpg,Andy Warhol,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+raw_data/resized/Andy_Warhol_120.jpg,Andy Warhol,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+raw_data/resized/Andy_Warhol_160.jpg,Andy Warhol,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+raw_data/resized/Andy_Warhol_38.jpg,Andy Warhol,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+raw_data/resized/Marc_Chagall_92.jpg,Marc Chagall,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+raw_data/resized/Frida_Kahlo_59.jpg,Frida Kahlo,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0
+raw_data/resized/Henri_Rousseau_61.jpg,Henri Rousseau,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+raw_data/resized/Frida_Kahlo_18.jpg,Frida Kahlo,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0
+raw_data/resized/Marc_Chagall_37.jpg,Marc Chagall,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+raw_data/resized/Marc_Chagall_173.jpg,Marc Chagall,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+raw_data/resized/Henri_Rousseau_41.jpg,Henri Rousseau,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+raw_data/resized/Henri_Rousseau_39.jpg,Henri Rousseau,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+raw_data/resized/Henri_Rousseau_50.jpg,Henri Rousseau,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+raw_data/resized/Henri_Rousseau_6.jpg,Henri Rousseau,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+raw_data/resized/Marc_Chagall_83.jpg,Marc Chagall,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+raw_data/resized/Frida_Kahlo_54.jpg,Frida Kahlo,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0
+raw_data/resized/Marc_Chagall_104.jpg,Marc Chagall,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+raw_data/resized/Marc_Chagall_226.jpg,Marc Chagall,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+raw_data/resized/Frida_Kahlo_26.jpg,Frida Kahlo,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0
+raw_data/resized/Henri_Rousseau_29.jpg,Henri Rousseau,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+raw_data/resized/Marc_Chagall_27.jpg,Marc Chagall,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+raw_data/resized/Frida_Kahlo_56.jpg,Frida Kahlo,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0
+raw_data/resized/Frida_Kahlo_107.jpg,Frida Kahlo,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0
+raw_data/resized/Marc_Chagall_178.jpg,Marc Chagall,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+raw_data/resized/Marc_Chagall_183.jpg,Marc Chagall,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+raw_data/resized/Marc_Chagall_218.jpg,Marc Chagall,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+raw_data/resized/Diego_Rivera_27.jpg,Diego Rivera,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0
+raw_data/resized/Diego_Rivera_20.jpg,Diego Rivera,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0
+raw_data/resized/Edouard_Manet_45.jpg,Edouard Manet,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0
+raw_data/resized/Edouard_Manet_78.jpg,Edouard Manet,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0
+raw_data/resized/Edouard_Manet_15.jpg,Edouard Manet,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0
+raw_data/resized/Edouard_Manet_40.jpg,Edouard Manet,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0
+raw_data/resized/Gustave_Courbet_21.jpg,Gustave Courbet,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+raw_data/resized/Gustave_Courbet_24.jpg,Gustave Courbet,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+raw_data/resized/Gustave_Courbet_10.jpg,Gustave Courbet,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+raw_data/resized/Gustave_Courbet_42.jpg,Gustave Courbet,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+raw_data/resized/Gustave_Courbet_50.jpg,Gustave Courbet,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+raw_data/resized/Giotto_di_Bondone_89.jpg,Giotto di Bondone,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Pieter_Bruegel_34.jpg,Pieter Bruegel,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Giotto_di_Bondone_65.jpg,Giotto di Bondone,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Jan_van_Eyck_70.jpg,Jan van Eyck,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Sandro_Botticelli_70.jpg,Sandro Botticelli,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Leonardo_da_Vinci_126.jpg,Leonardo da Vinci,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_46.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Hieronymus_Bosch_88.jpg,Hieronymus Bosch,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Giotto_di_Bondone_36.jpg,Giotto di Bondone,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Hieronymus_Bosch_85.jpg,Hieronymus Bosch,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_142.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_40.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Jan_van_Eyck_9.jpg,Jan van Eyck,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Sandro_Botticelli_74.jpg,Sandro Botticelli,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Giotto_di_Bondone_42.jpg,Giotto di Bondone,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Leonardo_da_Vinci_112.jpg,Leonardo da Vinci,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_110.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Leonardo_da_Vinci_99.jpg,Leonardo da Vinci,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Hieronymus_Bosch_107.jpg,Hieronymus Bosch,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Leonardo_da_Vinci_135.jpg,Leonardo da Vinci,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Giotto_di_Bondone_40.jpg,Giotto di Bondone,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Leonardo_da_Vinci_36.jpg,Leonardo da Vinci,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Leonardo_da_Vinci_120.jpg,Leonardo da Vinci,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Sandro_Botticelli_39.jpg,Sandro Botticelli,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Giotto_di_Bondone_12.jpg,Giotto di Bondone,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Leonardo_da_Vinci_118.jpg,Leonardo da Vinci,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Jan_van_Eyck_49.jpg,Jan van Eyck,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Leonardo_da_Vinci_91.jpg,Leonardo da Vinci,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Jan_van_Eyck_27.jpg,Jan van Eyck,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Raphael_71.jpg,Raphael,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Giotto_di_Bondone_83.jpg,Giotto di Bondone,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_143.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Raphael_103.jpg,Raphael,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Giotto_di_Bondone_44.jpg,Giotto di Bondone,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Sandro_Botticelli_41.jpg,Sandro Botticelli,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Sandro_Botticelli_5.jpg,Sandro Botticelli,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_175.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Michelangelo_21.jpg,Michelangelo,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Raphael_85.jpg,Raphael,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Hieronymus_Bosch_134.jpg,Hieronymus Bosch,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Sandro_Botticelli_18.jpg,Sandro Botticelli,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Pieter_Bruegel_119.jpg,Pieter Bruegel,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Jan_van_Eyck_42.jpg,Jan van Eyck,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Hieronymus_Bosch_15.jpg,Hieronymus Bosch,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_120.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Raphael_28.jpg,Raphael,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_156.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_28.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_24.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_92.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_147.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Giotto_di_Bondone_90.jpg,Giotto di Bondone,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Hieronymus_Bosch_21.jpg,Hieronymus Bosch,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Giotto_di_Bondone_55.jpg,Giotto di Bondone,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Pieter_Bruegel_121.jpg,Pieter Bruegel,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Hieronymus_Bosch_48.jpg,Hieronymus Bosch,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Sandro_Botticelli_82.jpg,Sandro Botticelli,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Leonardo_da_Vinci_62.jpg,Leonardo da Vinci,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Leonardo_da_Vinci_103.jpg,Leonardo da Vinci,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Titian_50.jpg,Titian,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Pieter_Bruegel_91.jpg,Pieter Bruegel,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+raw_data/resized/Francisco_Goya_53.jpg,Francisco Goya,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/Francisco_Goya_112.jpg,Francisco Goya,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/Francisco_Goya_221.jpg,Francisco Goya,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/Francisco_Goya_109.jpg,Francisco Goya,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/William_Turner_34.jpg,William Turner,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/Francisco_Goya_234.jpg,Francisco Goya,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/Francisco_Goya_209.jpg,Francisco Goya,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/Francisco_Goya_100.jpg,Francisco Goya,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/Francisco_Goya_176.jpg,Francisco Goya,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/Francisco_Goya_204.jpg,Francisco Goya,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/William_Turner_59.jpg,William Turner,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/Francisco_Goya_65.jpg,Francisco Goya,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/Francisco_Goya_165.jpg,Francisco Goya,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/Francisco_Goya_122.jpg,Francisco Goya,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/Francisco_Goya_25.jpg,Francisco Goya,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/Francisco_Goya_174.jpg,Francisco Goya,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/Eugene_Delacroix_23.jpg,Eugene Delacroix,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/Francisco_Goya_268.jpg,Francisco Goya,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/Francisco_Goya_147.jpg,Francisco Goya,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+raw_data/resized/Kazimir_Malevich_51.jpg,Kazimir Malevich,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+raw_data/resized/Kazimir_Malevich_116.jpg,Kazimir Malevich,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+raw_data/resized/Kazimir_Malevich_90.jpg,Kazimir Malevich,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+raw_data/resized/Kazimir_Malevich_46.jpg,Kazimir Malevich,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+raw_data/resized/Kazimir_Malevich_70.jpg,Kazimir Malevich,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+raw_data/resized/Kazimir_Malevich_55.jpg,Kazimir Malevich,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+raw_data/resized/Kazimir_Malevich_13.jpg,Kazimir Malevich,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+raw_data/resized/Kazimir_Malevich_33.jpg,Kazimir Malevich,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+raw_data/resized/Joan_Miro_12.jpg,Joan Miro,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Paul_Klee_36.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Frida_Kahlo_29.jpg,Frida Kahlo,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0
+raw_data/resized/Paul_Klee_174.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Salvador_Dali_45.jpg,Salvador Dali,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Rene_Magritte_141.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Frida_Kahlo_52.jpg,Frida Kahlo,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0
+raw_data/resized/Salvador_Dali_137.jpg,Salvador Dali,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Frida_Kahlo_67.jpg,Frida Kahlo,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0
+raw_data/resized/Salvador_Dali_43.jpg,Salvador Dali,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Salvador_Dali_16.jpg,Salvador Dali,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Frida_Kahlo_84.jpg,Frida Kahlo,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0
+raw_data/resized/Rene_Magritte_73.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Frida_Kahlo_72.jpg,Frida Kahlo,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0
+raw_data/resized/Joan_Miro_92.jpg,Joan Miro,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Rene_Magritte_125.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Paul_Klee_120.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Paul_Klee_146.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Salvador_Dali_96.jpg,Salvador Dali,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Rene_Magritte_113.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Frida_Kahlo_42.jpg,Frida Kahlo,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0
+raw_data/resized/Joan_Miro_93.jpg,Joan Miro,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Salvador_Dali_69.jpg,Salvador Dali,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Salvador_Dali_11.jpg,Salvador Dali,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Joan_Miro_68.jpg,Joan Miro,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Joan_Miro_22.jpg,Joan Miro,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Paul_Klee_109.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Frida_Kahlo_61.jpg,Frida Kahlo,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0
+raw_data/resized/Frida_Kahlo_74.jpg,Frida Kahlo,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0
+raw_data/resized/Paul_Klee_84.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Paul_Klee_31.jpg,Paul Klee,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Joan_Miro_102.jpg,Joan Miro,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Rene_Magritte_16.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Rene_Magritte_173.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Frida_Kahlo_7.jpg,Frida Kahlo,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0
+raw_data/resized/Rene_Magritte_15.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Frida_Kahlo_66.jpg,Frida Kahlo,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0
+raw_data/resized/Rene_Magritte_4.jpg,Rene Magritte,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+raw_data/resized/Paul_Gauguin_87.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Paul_Gauguin_5.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Paul_Gauguin_57.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Mikhail_Vrubel_50.jpg,Mikhail Vrubel,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Gustav_Klimt_106.jpg,Gustav Klimt,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Paul_Gauguin_98.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Paul_Gauguin_55.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Paul_Gauguin_146.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Paul_Gauguin_254.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Mikhail_Vrubel_1.jpg,Mikhail Vrubel,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Paul_Gauguin_114.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Mikhail_Vrubel_101.jpg,Mikhail Vrubel,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Mikhail_Vrubel_105.jpg,Mikhail Vrubel,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Gustav_Klimt_115.jpg,Gustav Klimt,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Gustav_Klimt_46.jpg,Gustav Klimt,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Mikhail_Vrubel_76.jpg,Mikhail Vrubel,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Paul_Gauguin_112.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Gustav_Klimt_82.jpg,Gustav Klimt,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Gustav_Klimt_103.jpg,Gustav Klimt,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Edvard_Munch_19.jpg,Edvard Munch,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Paul_Gauguin_190.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Edvard_Munch_8.jpg,Edvard Munch,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Paul_Gauguin_126.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Edvard_Munch_6.jpg,Edvard Munch,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Paul_Gauguin_270.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Paul_Gauguin_82.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Paul_Gauguin_293.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Paul_Gauguin_153.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Paul_Gauguin_188.jpg,Paul Gauguin,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Edvard_Munch_39.jpg,Edvard Munch,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Mikhail_Vrubel_126.jpg,Mikhail Vrubel,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Edvard_Munch_61.jpg,Edvard Munch,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Mikhail_Vrubel_62.jpg,Mikhail Vrubel,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+raw_data/resized/Mikhail_Vrubel_27.jpg,Mikhail Vrubel,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
