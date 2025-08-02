@@ -8,9 +8,11 @@ help:
 	@echo "  make install          Install all dependencies"
 	@echo "  make run-backend      Run FastAPI backend (http://localhost:8000)"
 	@echo "  make run-frontend     Run Streamlit frontend (http://localhost:8501)"
-	@echo "  make build-dataset    Build image dataset from CSV"
+	@echo ""
+	@echo "  make create-dataset   Create dataset from raw data (preprocessing)"
+	@echo "  make build-dataset    Build image dataset from CSV (VGG16)"
 	@echo "  make train-model      Train and save VGG16 model"
-	@echo "  make evaluate-model   Evaluate model on test set"
+	@echo "  make evaluate-model   Evaluate VGG16 model on test set"
 
 # === INSTALL ===
 
@@ -25,18 +27,26 @@ run-backend:
 run-frontend:
 	streamlit run frontend/app.py
 
-# === TRAINING ===
+# === DATA PREPROCESSING ===
+
+create-dataset:
+	python model/preprocessing/create_final_df.py
+
+create-artists:
+	python model/preprocessing/create_artists.py
+
+# === TRAINING (VGG16 Legacy) ===
 
 build-dataset:
-	python model/build_dataset.py
+	python model/vgg16-simple/build_dataset.py
 
 train-model:
-	python model/train_model.py
+	python model/vgg16-simple/train_model.py
 
 # === EVALUATE ===
 
 evaluate-model:
-	python model/evaluate_model.py
+	python model/vgg16-simple/evaluate_model.py
 
 # === LOCAL DOCKER ===
 

@@ -1,4 +1,4 @@
-from model.data_loader import get_data_generators
+from data_loader import get_data_generators
 from tensorflow.keras.models import load_model
 
 

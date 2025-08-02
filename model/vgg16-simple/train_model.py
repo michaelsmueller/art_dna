@@ -1,5 +1,5 @@
-from model.data_loader import get_data_generators
-from model.model_builder import build_model
+from data_loader import get_data_generators
+from model_builder import build_model
 import os
 import sys
 
