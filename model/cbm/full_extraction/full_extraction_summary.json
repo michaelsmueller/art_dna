@@ -1,0 +1,11 @@
+{
+  "total_images_attempted": 8027,
+  "successfully_processed": 8027,
+  "failed_count": 0,
+  "processing_time_hours": 14.647431219087707,
+  "average_rate_per_minute": 9.133569656841566,
+  "extraction_date": "2025-08-02T12:32:37.396989",
+  "final_results_file": "model/cbm/full_extraction/full_concepts_complete.json",
+  "concept_count": 40,
+  "estimated_cost_usd": 78.6646
+}

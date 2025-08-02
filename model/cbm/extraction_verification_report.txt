@@ -1,0 +1,101 @@
+
+📊 CONCEPT STATISTICS:
+----------------------------------------
+Concept                   Mean   Std    Present 
+--------------------------------------------------
+soft_rounded_forms        0.65   0.21   79.9%   
+naturalistic_rendering    0.65   0.25   79.3%   
+diffused_light            0.54   0.24   62.6%   
+flowing_organic_lines     0.54   0.24   59.5%   
+rich_deep_colors          0.50   0.30   58.9%   
+loose_visible_brushstrokes 0.55   0.38   58.1%   
+muted_tones               0.55   0.34   57.5%   
+peaceful_tranquil         0.50   0.32   56.3%   
+calm_serene_mood          0.48   0.36   56.2%   
+smooth_blending           0.46   0.25   47.1%   
+broken_sketchy_lines      0.43   0.33   46.3%   
+blurred_soft_edges        0.46   0.27   45.9%   
+portraits                 0.41   0.43   43.6%   
+compressed_space          0.37   0.27   34.4%   
+vibrant_colors            0.35   0.33   32.9%   
+dynamic_movement          0.34   0.35   30.7%   
+flattened_space           0.35   0.30   30.1%   
+diagonal_composition      0.35   0.27   29.6%   
+atmospheric_perspective   0.34   0.28   29.5%   
+polished_surface          0.24   0.33   28.4%   
+bold_outlines             0.30   0.31   28.2%   
+dynamic_energetic_mood    0.30   0.32   27.7%   
+linear_perspective        0.30   0.28   25.6%   
+delicate_precise_lines    0.27   0.29   24.7%   
+dramatic_shadows          0.31   0.28   23.9%   
+chiaroscuro               0.28   0.31   23.4%   
+tense_dramatic            0.25   0.32   22.6%   
+geometric_shapes          0.30   0.29   22.2%   
+golden_hour_light         0.30   0.28   21.7%   
+religious_scenes          0.18   0.36   19.2%   
+pastel_colors             0.24   0.27   16.7%   
+abstract_forms            0.21   0.29   14.5%   
+sfumato_technique         0.23   0.23   12.2%   
+symmetrical_composition   0.21   0.24   11.5%   
+photo_quality_rendering   0.11   0.24   11.4%   
+sharp_angular_forms       0.15   0.25   10.8%   
+hierarchical_scale        0.13   0.23   9.9%    
+multiple_viewpoints       0.08   0.22   7.2%    
+architectural_precision   0.09   0.21   7.0%    
+angular_fragmentation     0.08   0.22   6.9%    
+
+🎯 TOP CONCEPT-GENRE CORRELATIONS:
+----------------------------------------
+religious_scenes     ↔ Renaissance    :  0.516
+delicate_precise_lines ↔ Renaissance    :  0.509
+loose_visible_brushstrokes ↔ Impressionism  :  0.502
+polished_surface     ↔ Renaissance    :  0.464
+hierarchical_scale   ↔ Renaissance    :  0.446
+chiaroscuro          ↔ Baroque        :  0.442
+loose_visible_brushstrokes ↔ Renaissance    : -0.426
+abstract_forms       ↔ Abstractionism :  0.423
+polished_surface     ↔ Impressionism  : -0.419
+architectural_precision ↔ Renaissance    :  0.418
+
+🔍 QUALITY SPOT CHECKS:
+----------------------------------------
+
+Sample 1: Vincent_van_Gogh_152.jpg
+Top concepts:
+   broken_sketchy_lines: 1.00
+   muted_tones: 1.00
+   soft_rounded_forms: 0.70
+   peaceful_tranquil: 0.70
+   diffused_light: 0.70
+
+Sample 2: Michelangelo_43.jpg
+Top concepts:
+   religious_scenes: 1.00
+   naturalistic_rendering: 1.00
+   tense_dramatic: 1.00
+   soft_rounded_forms: 0.70
+   diffused_light: 0.70
+
+Sample 3: Paul_Gauguin_116.jpg
+Top concepts:
+   loose_visible_brushstrokes: 1.00
+   soft_rounded_forms: 1.00
+   blurred_soft_edges: 0.70
+   peaceful_tranquil: 0.70
+   diffused_light: 0.70
+
+Sample 4: Andrei_Rublev_23.jpg
+Top concepts:
+   religious_scenes: 1.00
+   peaceful_tranquil: 0.70
+   golden_hour_light: 0.70
+   architectural_precision: 0.70
+   naturalistic_rendering: 0.70
+
+Sample 5: Vincent_van_Gogh_629.jpg
+Top concepts:
+   loose_visible_brushstrokes: 1.00
+   vibrant_colors: 1.00
+   soft_rounded_forms: 0.70
+   peaceful_tranquil: 0.70
+   golden_hour_light: 0.70
