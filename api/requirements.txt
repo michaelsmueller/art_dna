@@ -1,5 +1,6 @@
--r ../requirements.txt
+-r ../shared.txt
 fastapi
+python-multipart
 uvicorn
 
 # DeiT Similarity

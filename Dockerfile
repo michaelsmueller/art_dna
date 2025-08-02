@@ -13,7 +13,7 @@ ENV PYTHONPATH=/
 
 # Copy application and data
 COPY api api
-COPY data/ /data/
+COPY descriptions/ /descriptions/
 COPY model model
 COPY embeddings embeddings
 COPY raw_data/artists.csv raw_data/artists.csv

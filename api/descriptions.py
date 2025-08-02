@@ -9,8 +9,8 @@ import json
 from typing import Dict, Any
 
 # Import data directly from Python files (no CSV parsing needed)
-from data.adult_data import adult_data
-from data.kids_data import kids_data
+from descriptions.adult_data import adult_data
+from descriptions.kids_data import kids_data
 
 
 def _parse_json_field(json_string: str) -> list:

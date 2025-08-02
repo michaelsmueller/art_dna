@@ -148,5 +148,5 @@ adult_data = [
 ]
 
 df = pd.DataFrame(adult_data)
-df.to_csv("adult_data_18_genres.csv", index=False)
+df.to_csv("descriptions/adult_data_18_genres.csv", index=False)
 print("CSV file 'adult_data_18_genres.csv' has been created!")

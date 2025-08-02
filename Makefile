@@ -48,7 +48,7 @@ train-model:
 evaluate-model:
 	python model/vgg16-simple/evaluate_model.py
 
-# === LOCAL DOCKER ===
+# === LOCAL DOCKER API ===
 
 build_container_local:
 	docker build --tag=${IMAGE}:dev .
@@ -56,7 +56,7 @@ build_container_local:
 run_container_local:
 	docker run -it -e PORT=8000 -p 8000:8000 ${IMAGE}:dev
 
-# === GCP DEPLOYMENT ===
+# === GCP DEPLOYMENT API ===
 
 build_for_production:
 	docker build \

@@ -38,6 +38,8 @@ if os.getenv("USE_GCS", "false").lower() != "true":
     print("📁 Static files mounted for local development")
 
 # Load model and class names once at startup
+from tensorflow.keras.models import load_model
+
 model = load_model("model/art_style_classifier.keras", compile=False)
 with open("model/class_names.txt", "r", encoding="utf-8") as f:
     class_names = [line.strip() for line in f.readlines()]

@@ -1,4 +1,4 @@
--r ../requirements.txt
+-r ../shared.txt
 
 anthropic
 matplotlib
@@ -6,6 +6,4 @@ matplotlib
 # CBM
 grad-cam
 timm
-torch==2.3.0
-torchvision==0.18.0
 tqdm
