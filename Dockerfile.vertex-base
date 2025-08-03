@@ -1,0 +1,38 @@
+# Base image with all dependencies (rebuild rarely)
+FROM python:3.10-slim
+
+# Install system dependencies for graphics/image processing
+RUN apt-get update && apt-get install -y \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Google Cloud SDK (for gsutil)
+RUN curl -sSL https://sdk.cloud.google.com | bash
+ENV PATH $PATH:/root/google-cloud-sdk/bin
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements files first for better caching
+COPY shared.txt shared.txt
+COPY model/requirements.txt model/requirements.txt
+
+# Install Python dependencies (regular versions with GPU support)
+RUN pip install --no-cache-dir -r shared.txt -r model/requirements.txt
+
+# Install additional dependencies for Vertex AI
+RUN pip install --no-cache-dir \
+    mlflow \
+    google-cloud-storage \
+    google-cloud-aiplatform
+
+# Set Python path to include the app root
+ENV PYTHONPATH=/app
+
+# Set matplotlib backend to non-interactive (prevents OpenGL issues)
+ENV MPLBACKEND=Agg
+
+# Create raw_data directory - data will be downloaded at runtime
+RUN mkdir -p raw_data

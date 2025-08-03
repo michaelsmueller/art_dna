@@ -13,6 +13,11 @@ help:
 	@echo "  make build-dataset    Build image dataset from CSV (VGG16)"
 	@echo "  make train-model      Train and save VGG16 model"
 	@echo "  make evaluate-model   Evaluate VGG16 model on test set"
+	@echo ""
+	@echo "  make build_vertex_cloud   Build Vertex AI container via Cloud Build"
+	@echo "  make train_vertex_t4      Submit T4 training job (preemptible)"
+	@echo "  make train_vertex_a100    Submit A100 training job"
+	@echo "  make train_vertex_dry_run Show job config without submitting"
 
 # === INSTALL ===
 
@@ -68,3 +73,19 @@ deploy_to_cloud_run:
 		--timeout 900 \
 		--region ${GCP_REGION} \
 		--set-env-vars USE_GCS=true
+
+# === VERTEX AI TRAINING ===
+
+# Build base image (base dependencies)
+build_vertex_base:
+	gcloud builds submit . --config=cloudbuild-vertex-base.yaml --timeout=30m
+
+# Build training image (code changes)
+build_vertex_cloud:
+	gcloud builds submit . --config=cloudbuild-vertex.yaml --timeout=10m
+
+train_vertex:
+	python scripts/launch_vertex.py --gpu-type T4
+
+train_vertex_dry_run:
+	python scripts/launch_vertex.py --dry-run

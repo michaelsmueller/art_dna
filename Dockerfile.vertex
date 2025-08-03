@@ -1,0 +1,26 @@
+# Multi-stage Dockerfile for fast iteration
+# Stage 1: Use pre-built base image with dependencies
+FROM gcr.io/art-dna-ml/art-dna-vertex-base:latest
+
+# Stage 2: Add application code (fast to rebuild)
+# Training files
+COPY model/cbm_model.py model/
+COPY model/pytorch_data_loader.py model/
+COPY model/__init__.py model/
+COPY model/class_names.txt model/
+
+# CBM-specific files
+COPY model/cbm/concept_dataset.py model/cbm/
+COPY model/cbm/train_cbm.py model/cbm/
+COPY model/cbm/__init__.py model/cbm/
+COPY model/cbm/concept_weights_cache.json model/cbm/
+COPY model/cbm/data/final_concepts.json model/cbm/data/
+COPY model/cbm/data/discriminative_concepts.json model/cbm/data/
+COPY model/cbm/data/full_extraction/full_concepts_complete.json model/cbm/data/full_extraction/
+
+# Training scripts
+COPY scripts/train_cbm_vertex.py scripts/
+COPY scripts/train_cbm_weighted.py scripts/
+
+# Default command (will be overridden by Vertex AI job)
+CMD ["python", "scripts/train_cbm_vertex.py", "--help"]
