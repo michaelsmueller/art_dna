@@ -1,0 +1,398 @@
+{
+  "Abstractionism": [
+    {
+      "concept": "angular_fragmentation",
+      "correlation": 0.7903183015434356
+    },
+    {
+      "concept": "sharp_angular_forms",
+      "correlation": 0.7288263260041277
+    },
+    {
+      "concept": "abstract_forms",
+      "correlation": 0.681173697085708
+    },
+    {
+      "concept": "diffused_light",
+      "correlation": -0.6621765002702067
+    },
+    {
+      "concept": "golden_hour_light",
+      "correlation": -0.6422337683681362
+    }
+  ],
+  "Art Nouveau": [
+    {
+      "concept": "flattened_space",
+      "correlation": 0.6424146108623641
+    },
+    {
+      "concept": "tense_dramatic",
+      "correlation": -0.606150559979301
+    },
+    {
+      "concept": "photo_quality_rendering",
+      "correlation": -0.6014314806907838
+    },
+    {
+      "concept": "soft_rounded_forms",
+      "correlation": -0.60130112516045
+    },
+    {
+      "concept": "sfumato_technique",
+      "correlation": -0.6004861651615866
+    }
+  ],
+  "Baroque": [
+    {
+      "concept": "chiaroscuro",
+      "correlation": 0.7716338914343811
+    },
+    {
+      "concept": "flattened_space",
+      "correlation": -0.7618266049369891
+    },
+    {
+      "concept": "abstract_forms",
+      "correlation": -0.6962611755336503
+    },
+    {
+      "concept": "smooth_blending",
+      "correlation": 0.6752881575445514
+    },
+    {
+      "concept": "religious_scenes",
+      "correlation": 0.654661419739472
+    }
+  ],
+  "Byzantine Art": [
+    {
+      "concept": "naturalistic_rendering",
+      "correlation": -0.6847305932279185
+    },
+    {
+      "concept": "soft_rounded_forms",
+      "correlation": -0.6407061795098534
+    },
+    {
+      "concept": "atmospheric_perspective",
+      "correlation": -0.5396293738106257
+    },
+    {
+      "concept": "diagonal_composition",
+      "correlation": -0.5342956793870218
+    },
+    {
+      "concept": "diffused_light",
+      "correlation": -0.5171885320792932
+    }
+  ],
+  "Cubism": [
+    {
+      "concept": "atmospheric_perspective",
+      "correlation": -0.8316673060946881
+    },
+    {
+      "concept": "bold_outlines",
+      "correlation": 0.8171543721566762
+    },
+    {
+      "concept": "angular_fragmentation",
+      "correlation": 0.8132078700880788
+    },
+    {
+      "concept": "flattened_space",
+      "correlation": 0.8041160133913685
+    },
+    {
+      "concept": "soft_rounded_forms",
+      "correlation": -0.7601423163269756
+    }
+  ],
+  "Expressionism": [
+    {
+      "concept": "angular_fragmentation",
+      "correlation": 0.7985921948884585
+    },
+    {
+      "concept": "flattened_space",
+      "correlation": 0.7703611539789803
+    },
+    {
+      "concept": "abstract_forms",
+      "correlation": 0.7615198779825388
+    },
+    {
+      "concept": "bold_outlines",
+      "correlation": 0.7587048308655783
+    },
+    {
+      "concept": "atmospheric_perspective",
+      "correlation": -0.7366248591122981
+    }
+  ],
+  "Impressionism": [
+    {
+      "concept": "loose_visible_brushstrokes",
+      "correlation": 0.87783423049087
+    },
+    {
+      "concept": "broken_sketchy_lines",
+      "correlation": 0.796036551364349
+    },
+    {
+      "concept": "polished_surface",
+      "correlation": -0.7897161129206731
+    },
+    {
+      "concept": "naturalistic_rendering",
+      "correlation": 0.7213575373161739
+    },
+    {
+      "concept": "delicate_precise_lines",
+      "correlation": -0.6803320866752377
+    }
+  ],
+  "Mannerism": [
+    {
+      "concept": "religious_scenes",
+      "correlation": 0.7642668577304697
+    },
+    {
+      "concept": "photo_quality_rendering",
+      "correlation": 0.7472550667739529
+    },
+    {
+      "concept": "flattened_space",
+      "correlation": -0.730220868707062
+    },
+    {
+      "concept": "chiaroscuro",
+      "correlation": 0.7026439222546309
+    },
+    {
+      "concept": "hierarchical_scale",
+      "correlation": 0.6990448760511677
+    }
+  ],
+  "Muralism": [
+    {
+      "concept": "naturalistic_rendering",
+      "correlation": -0.732452550723409
+    },
+    {
+      "concept": "soft_rounded_forms",
+      "correlation": -0.6933816213603793
+    },
+    {
+      "concept": "diagonal_composition",
+      "correlation": -0.5890511346192752
+    },
+    {
+      "concept": "diffused_light",
+      "correlation": -0.5667447213743189
+    },
+    {
+      "concept": "broken_sketchy_lines",
+      "correlation": -0.5604664601333572
+    }
+  ],
+  "Neoplasticism": [
+    {
+      "concept": "soft_rounded_forms",
+      "correlation": -0.6719772334026597
+    },
+    {
+      "concept": "diffused_light",
+      "correlation": -0.5948655990605372
+    },
+    {
+      "concept": "flattened_space",
+      "correlation": 0.5898129881057759
+    },
+    {
+      "concept": "golden_hour_light",
+      "correlation": -0.5887892509830221
+    },
+    {
+      "concept": "abstract_forms",
+      "correlation": 0.580419006502452
+    }
+  ],
+  "Pop Art": [
+    {
+      "concept": "sharp_angular_forms",
+      "correlation": 0.7247546797723085
+    },
+    {
+      "concept": "golden_hour_light",
+      "correlation": -0.710995714757757
+    },
+    {
+      "concept": "diffused_light",
+      "correlation": -0.6810802043140088
+    },
+    {
+      "concept": "abstract_forms",
+      "correlation": 0.6624803682917207
+    },
+    {
+      "concept": "flattened_space",
+      "correlation": 0.632650806956841
+    }
+  ],
+  "Primitivism": [
+    {
+      "concept": "sharp_angular_forms",
+      "correlation": 0.8386159915996979
+    },
+    {
+      "concept": "diffused_light",
+      "correlation": -0.780705338192846
+    },
+    {
+      "concept": "abstract_forms",
+      "correlation": 0.7750138915024171
+    },
+    {
+      "concept": "angular_fragmentation",
+      "correlation": 0.7676652312864926
+    },
+    {
+      "concept": "soft_rounded_forms",
+      "correlation": -0.7054090089806324
+    }
+  ],
+  "Realism": [
+    {
+      "concept": "abstract_forms",
+      "correlation": -0.792159082080976
+    },
+    {
+      "concept": "dynamic_energetic_mood",
+      "correlation": -0.7101233321899728
+    },
+    {
+      "concept": "flattened_space",
+      "correlation": -0.7026191469013701
+    },
+    {
+      "concept": "angular_fragmentation",
+      "correlation": -0.6924686755773214
+    },
+    {
+      "concept": "sharp_angular_forms",
+      "correlation": -0.6309713873597076
+    }
+  ],
+  "Renaissance": [
+    {
+      "concept": "hierarchical_scale",
+      "correlation": 0.8918117340907894
+    },
+    {
+      "concept": "religious_scenes",
+      "correlation": 0.8667147682210969
+    },
+    {
+      "concept": "photo_quality_rendering",
+      "correlation": 0.7866448390310943
+    },
+    {
+      "concept": "polished_surface",
+      "correlation": 0.7525551740402731
+    },
+    {
+      "concept": "broken_sketchy_lines",
+      "correlation": -0.723056041660059
+    }
+  ],
+  "Romanticism": [
+    {
+      "concept": "abstract_forms",
+      "correlation": -0.8061202425859957
+    },
+    {
+      "concept": "flattened_space",
+      "correlation": -0.762789151020921
+    },
+    {
+      "concept": "bold_outlines",
+      "correlation": -0.7539725886261128
+    },
+    {
+      "concept": "chiaroscuro",
+      "correlation": 0.6952335985657903
+    },
+    {
+      "concept": "geometric_shapes",
+      "correlation": -0.6773537098458693
+    }
+  ],
+  "Suprematism": [
+    {
+      "concept": "angular_fragmentation",
+      "correlation": 0.7551442562814038
+    },
+    {
+      "concept": "sharp_angular_forms",
+      "correlation": 0.7330712636161845
+    },
+    {
+      "concept": "abstract_forms",
+      "correlation": 0.6954928077470214
+    },
+    {
+      "concept": "diffused_light",
+      "correlation": -0.694681627523449
+    },
+    {
+      "concept": "golden_hour_light",
+      "correlation": -0.6906775003736877
+    }
+  ],
+  "Surrealism": [
+    {
+      "concept": "sharp_angular_forms",
+      "correlation": 0.8134223778704676
+    },
+    {
+      "concept": "angular_fragmentation",
+      "correlation": 0.7742670228901616
+    },
+    {
+      "concept": "diffused_light",
+      "correlation": -0.7370066167906842
+    },
+    {
+      "concept": "geometric_shapes",
+      "correlation": 0.7310228346322549
+    },
+    {
+      "concept": "soft_rounded_forms",
+      "correlation": -0.6770796231718618
+    }
+  ],
+  "Symbolism": [
+    {
+      "concept": "polished_surface",
+      "correlation": -0.8201802814451321
+    },
+    {
+      "concept": "delicate_precise_lines",
+      "correlation": -0.793213116323131
+    },
+    {
+      "concept": "photo_quality_rendering",
+      "correlation": -0.7685416950803013
+    },
+    {
+      "concept": "loose_visible_brushstrokes",
+      "correlation": 0.7366561138586367
+    },
+    {
+      "concept": "broken_sketchy_lines",
+      "correlation": 0.7034549866146478
+    }
+  ]
+}

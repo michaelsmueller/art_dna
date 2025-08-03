@@ -24,7 +24,7 @@ from model.cbm_model import ConceptBottleneckModel
 from model.cbm.concept_dataset import get_concept_data_loaders
 
 
-def load_trained_model(checkpoint_path="model/cbm/cbm_weighted_best.pth"):
+def load_trained_model(checkpoint_path="model/cbm/models/cbm_weighted_best.pth"):
     """Load the trained CBM model with optimal thresholds."""
     print("🧠 Loading trained CBM model...")
 
@@ -315,7 +315,7 @@ def main():
     print("=" * 50)
 
     # Check if model exists
-    checkpoint_path = "model/cbm/cbm_weighted_best.pth"
+    checkpoint_path = "model/cbm/models/cbm_weighted_best.pth"
     if not Path(checkpoint_path).exists():
         print(f"❌ No checkpoint found at {checkpoint_path}")
         print("   Please complete training first!")
