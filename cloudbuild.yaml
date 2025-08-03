@@ -1,0 +1,25 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-f',
+        'Dockerfile.cloud',
+        '--cache-from',
+        'europe-west1-docker.pkg.dev/art-dna-ml/art-dna-repo/art-dna-api:latest',
+        '--platform',
+        'linux/amd64',
+        '-t',
+        'europe-west1-docker.pkg.dev/art-dna-ml/art-dna-repo/art-dna-api:prod',
+        '-t',
+        'europe-west1-docker.pkg.dev/art-dna-ml/art-dna-repo/art-dna-api:latest',
+        '.',
+      ]
+    timeout: 1200s
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '--all-tags', 'europe-west1-docker.pkg.dev/art-dna-ml/art-dna-repo/art-dna-api']
+
+options:
+  machineType: 'E2_HIGHCPU_8'
+  diskSizeGb: 100

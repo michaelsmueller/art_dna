@@ -1,0 +1,32 @@
+FROM python:3.10-slim
+
+# Install system dependencies for graphics/image processing
+RUN apt-get update && apt-get install -y \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements files
+COPY shared.txt shared.txt
+COPY api/requirements.txt api/requirements.txt
+COPY model/requirements.txt model/requirements.txt
+
+# Install dependencies (CPU-only tensorflow for smaller image)
+RUN pip install -r shared.txt -r api/requirements.txt -r model/requirements.txt
+
+# Set Python path to include the app root
+ENV PYTHONPATH=/
+
+# Set matplotlib backend to non-interactive (prevents OpenGL issues)
+ENV MPLBACKEND=Agg
+
+# Copy application and data
+COPY api api
+COPY descriptions/ /descriptions/
+COPY model model
+COPY embeddings embeddings
+COPY raw_data/artists.csv raw_data/artists.csv
+
+# Cloud Run provides PORT environment variable
+EXPOSE $PORT
+CMD uvicorn api.fast:app --host 0.0.0.0 --port $PORT

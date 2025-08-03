@@ -9,8 +9,3 @@ model/grad_cam_visual/
 # Git
 .git
 .gitignore
-
-# Local shared requirements (use docker-specific version)
-shared.txt
-api/requirements.txt
-model/requirements.txt

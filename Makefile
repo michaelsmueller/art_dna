@@ -51,21 +51,15 @@ evaluate-model:
 # === LOCAL DOCKER API ===
 
 build_container_local:
-	docker build --tag=${IMAGE}:dev .
+	docker build -f Dockerfile.local --tag=${IMAGE}:dev .
 
 run_container_local:
 	docker run -it -e PORT=8000 -p 8000:8000 ${IMAGE}:dev
 
 # === GCP DEPLOYMENT API ===
 
-build_for_production:
-	docker build \
-		--platform linux/amd64 \
-		-t ${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT}/${ARTIFACTSREPO}/${IMAGE}:prod \
-		.
-
-push_image_production:
-	docker push ${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT}/${ARTIFACTSREPO}/${IMAGE}:prod
+build_cloud:
+	gcloud builds submit . --config=cloudbuild.yaml --timeout=30m
 
 deploy_to_cloud_run:
 	gcloud run deploy \
