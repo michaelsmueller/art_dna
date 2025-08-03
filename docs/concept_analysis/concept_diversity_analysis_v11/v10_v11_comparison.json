@@ -1,0 +1,17 @@
+{
+  "v10": {
+    "avg_correlation": 0.295,
+    "effective_rank": 9.3,
+    "high_corr_pairs": 8
+  },
+  "v11": {
+    "avg_correlation": 0.2896770326430156,
+    "effective_rank": 9.354133397350664,
+    "high_corr_pairs": 10
+  },
+  "improvements": {
+    "correlation_reduction": "-1.8%",
+    "rank_improvement": "+0.6%",
+    "high_corr_reduction": -2
+  }
+}

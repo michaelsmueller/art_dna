@@ -1,0 +1,28 @@
+{
+  "metrics": {
+    "train": {
+      "avg_absolute_correlation": 0.29482462743805304,
+      "effective_rank": 9.295507999683444,
+      "max_possible_rank": 37,
+      "concept_sparsity": 0.0,
+      "redundancy_score": 0.0015015015015015015
+    },
+    "val": {
+      "avg_absolute_correlation": 0.29848624420848624,
+      "effective_rank": 9.135781814919687,
+      "max_possible_rank": 37,
+      "concept_sparsity": 0.0,
+      "redundancy_score": 0.0015015015015015015
+    },
+    "test": {
+      "avg_absolute_correlation": 0.2963259907034506,
+      "effective_rank": 9.316037477144247,
+      "max_possible_rank": 37,
+      "concept_sparsity": 0.0,
+      "redundancy_score": 0.0015015015015015015
+    }
+  },
+  "n_high_corr_pairs": 8,
+  "n_clusters_strict": 36,
+  "n_clusters_moderate": 25
+}
