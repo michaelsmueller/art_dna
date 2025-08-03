@@ -3,3 +3,8 @@ art_dna.egg-info/
 .env
 __pycache__/
 .ipynb_checkpoints/
+.DS_Store
+
+# Model checkpoints and files 
+# *.pth
+# model/cbm/models/

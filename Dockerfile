@@ -1,15 +1,24 @@
 FROM python:3.10-slim
 
-# Copy all requirements files
-COPY shared.txt shared.txt
-COPY api/requirements.txt api/requirements.txt
-COPY model/requirements.txt model/requirements.txt
+# Install system dependencies for graphics/image processing
+RUN apt-get update && apt-get install -y \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install dependencies
-RUN pip install -r shared.txt -r api/requirements.txt -r model/requirements.txt
+# Copy requirements files (shared-docker uses CPU-only tensorflow)
+COPY shared-docker.txt shared-docker.txt
+COPY api/requirements-docker.txt api/requirements-docker.txt
+COPY model/requirements-docker.txt model/requirements-docker.txt
+
+# Install dependencies (CPU-only tensorflow for smaller image)
+RUN pip install -r shared-docker.txt -r api/requirements-docker.txt -r model/requirements-docker.txt
 
 # Set Python path to include the app root
 ENV PYTHONPATH=/
+
+# Set matplotlib backend to non-interactive (prevents OpenGL issues)
+ENV MPLBACKEND=Agg
 
 # Copy application and data
 COPY api api
