@@ -74,42 +74,13 @@ class ConceptArtDataset(Dataset):
 
     def _map_image_path(self, img_path: str) -> str:
         """Map local image path to GCS path when running in cloud environment."""
-        import os
-
-        # Check if running in Vertex AI (or any cloud environment)
-        if (
-            os.getenv("VERTEX_AI_TRAINING", "false").lower() == "true"
-            or os.getenv("CLOUD_ML_JOB_ID") is not None
-        ):
-            # Convert local path to GCS path
-            if img_path.startswith("raw_data/resized/"):
-                return f"gs://art-dna-ml-data/{img_path}"
-            elif not img_path.startswith("gs://"):
-                # Assume it's a relative path that needs GCS prefix
-                return (
-                    f"gs://art-dna-ml-data/raw_data/resized/{img_path.split('/')[-1]}"
-                )
-
+        # SIMPLIFIED: Always use local paths since we download everything upfront
         return img_path
 
     def _load_image(self, img_path: str) -> Image.Image:
-        """Load image from local or GCS path."""
-        if img_path.startswith("gs://"):
-            # Load from GCS using subprocess and gsutil
-            import subprocess
-            import tempfile
-
-            with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as tmp_file:
-                subprocess.run(["gsutil", "cp", img_path, tmp_file.name], check=True)
-                image = Image.open(tmp_file.name).convert("RGB")
-                # Clean up temp file
-                import os
-
-                os.unlink(tmp_file.name)
-                return image
-        else:
-            # Load from local path
-            return Image.open(img_path).convert("RGB")
+        """Load image from local path."""
+        # SIMPLIFIED: Only load from local since we download everything upfront
+        return Image.open(img_path).convert("RGB")
 
     def _verify_data_alignment(self):
         """Verify that all images have concept labels."""

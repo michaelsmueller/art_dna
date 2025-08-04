@@ -55,6 +55,7 @@ def setup_mlflow(experiment_name="cbm-vertex"):
 def download_training_data():
     """Download training data from GCS to local paths"""
     import subprocess
+    import os
 
     print("📥 Downloading training data from GCS...")
 
@@ -68,7 +69,22 @@ def download_training_data():
         print(f"   Downloading {gcs_path} -> {local_path}")
         subprocess.run(["gsutil", "cp", gcs_path, local_path], check=True)
 
-    print("✅ Training data downloaded successfully")
+    # Download ALL images in one go (simple fix!)
+    print("📥 Downloading all training images (this will take ~5-10 minutes)...")
+    os.makedirs("raw_data/resized", exist_ok=True)
+    subprocess.run(
+        [
+            "gsutil",
+            "-m",
+            "cp",
+            "-r",
+            "gs://art-dna-ml-data/raw_data/resized/*",
+            "raw_data/resized/",
+        ],
+        check=True,
+    )
+
+    print("✅ All training data downloaded successfully")
 
 
 def load_model_and_data(checkpoint_path, batch_size=16):
@@ -240,15 +256,17 @@ def train_vertex_cbm(args):
         print(f"{'='*60}")
 
         # Train
-        train_loss = trainer.train_epoch(loaders["train"])
+        train_losses, train_metrics = trainer.train_epoch(loaders["train"], epoch)
+        train_loss = train_losses["total"]
 
         # Evaluate
-        val_metrics = trainer.evaluate(loaders["val"])
+        val_losses, val_metrics = trainer.validate(loaders["val"])
         val_f1 = val_metrics.get("style_f1_weighted", 0)
+        val_total_loss = val_losses["total"]
 
         print(f"📊 Epoch {epoch} Results:")
         print(f"   Train Loss: {train_loss:.4f}")
-        print(f"   Val Loss: {val_metrics['total_loss']:.4f}")
+        print(f"   Val Loss: {val_total_loss:.4f}")
         print(f"   Val F1 (weighted): {val_f1:.4f}")
 
         # Log to MLflow
@@ -256,7 +274,7 @@ def train_vertex_cbm(args):
             {
                 "epoch": epoch,
                 "train_loss": train_loss,
-                "val_loss": val_metrics["total_loss"],
+                "val_loss": val_total_loss,
                 "val_f1_weighted": val_f1,
                 "val_f1_micro": val_metrics.get("style_f1_micro", 0),
             },
@@ -286,9 +304,7 @@ def train_vertex_cbm(args):
     # Final evaluation with optimal thresholds
     print("\n🔍 Final evaluation with optimal thresholds...")
     optimal_thresholds = find_optimal_thresholds(model, loaders["val"], device)
-    final_metrics = trainer.evaluate(
-        loaders["val"], optimal_thresholds=optimal_thresholds
-    )
+    final_losses, final_metrics = trainer.validate(loaders["val"])
     final_f1 = final_metrics.get("style_f1_weighted", 0)
 
     print(f"🎯 Final Results:")
