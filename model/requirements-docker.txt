@@ -1,0 +1,9 @@
+-r ../shared-docker.txt
+
+anthropic
+matplotlib
+
+# CBM
+grad-cam
+timm
+tqdm

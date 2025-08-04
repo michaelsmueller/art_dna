@@ -1,0 +1,7 @@
+-r ../shared-docker.txt
+fastapi
+python-multipart
+uvicorn
+
+# DeiT Similarity
+transformers

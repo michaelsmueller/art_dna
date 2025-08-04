@@ -1,12 +1,7 @@
 -r ../shared.txt
 fastapi
-uvicorn
 python-multipart
+uvicorn
 
-# ML libraries only in API:
-pandas
-scikit-learn
-tensorflow
-torch
-torchvision
+# DeiT Similarity
 transformers

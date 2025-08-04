@@ -1,0 +1,37 @@
+# Large model files (but keep art_style_classifier.keras)
+model/art_style_classifier_legacy.keras
+*.h5
+*.ckpt
+*.safetensors
+
+# Data files that are large
+*.png
+*.jpg
+*.jpeg
+
+# Development files
+notebooks/
+concept_diversity_analysis/
+concept_overlap_analysis/
+model/grad_cam_visual/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+
+# Git
+.git/
+.gitignore
+
+# Environment
+.env
+venv/
+
+# OS
+.DS_Store
+
+# Keep only the CSV we need
+raw_data/*
+!raw_data/artists.csv

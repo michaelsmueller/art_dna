@@ -1,0 +1,60 @@
+{
+  "selected_concepts": [
+    "abstract_forms",
+    "angular_fragmentation",
+    "architectural_precision",
+    "atmospheric_perspective",
+    "bold_outlines",
+    "broken_sketchy_lines",
+    "calm_serene_mood",
+    "chiaroscuro",
+    "compressed_space",
+    "delicate_precise_lines",
+    "diagonal_composition",
+    "diffused_light",
+    "dynamic_energetic_mood",
+    "dynamic_movement",
+    "flattened_space",
+    "flowing_organic_lines",
+    "geometric_shapes",
+    "golden_hour_light",
+    "hierarchical_scale",
+    "linear_perspective",
+    "loose_visible_brushstrokes",
+    "multiple_viewpoints",
+    "muted_tones",
+    "naturalistic_rendering",
+    "pastel_colors",
+    "photo_quality_rendering",
+    "polished_surface",
+    "portraits",
+    "religious_scenes",
+    "rich_deep_colors",
+    "sfumato_technique",
+    "sharp_angular_forms",
+    "smooth_blending",
+    "soft_rounded_forms",
+    "symmetrical_composition",
+    "tense_dramatic",
+    "vibrant_colors"
+  ],
+  "anti_expressionism_markers": [
+    "architectural_precision",
+    "calm_serene_mood",
+    "delicate_precise_lines",
+    "photo_quality_rendering",
+    "polished_surface"
+  ],
+  "removed_concepts": [
+    "blurred_soft_edges",
+    "dramatic_shadows",
+    "peaceful_tranquil"
+  ],
+  "removal_reasons": {
+    "blurred_soft_edges": "100% presence - too generic",
+    "dramatic_shadows": "0.980 correlation with chiaroscuro",
+    "peaceful_tranquil": "0.955 correlation with calm_serene_mood"
+  },
+  "pilot_analysis_date": "2025-01-18",
+  "final_count": 37
+}

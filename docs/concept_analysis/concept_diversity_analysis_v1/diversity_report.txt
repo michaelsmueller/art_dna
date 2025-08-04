@@ -1,0 +1,36 @@
+
+# Concept Diversity Analysis Report
+
+## Summary Metrics
+
+### Training Set
+- Average Absolute Correlation: 0.295
+- Effective Rank: 9.3 / 37
+- Concept Sparsity: 0.00%
+- Redundancy Score: 0.15%
+
+### Validation Set
+- Average Absolute Correlation: 0.298
+- Effective Rank: 9.1 / 37
+
+### Test Set
+- Average Absolute Correlation: 0.296
+- Effective Rank: 9.3 / 37
+
+## Highly Correlated Concept Pairs (|r| > 0.8)
+Found 8 pairs:
+- hierarchical_scale ↔ religious_scenes: r = 0.916
+- broken_sketchy_lines ↔ polished_surface: r = -0.895
+- photo_quality_rendering ↔ polished_surface: r = 0.881
+- atmospheric_perspective ↔ linear_perspective: r = 0.872
+- abstract_forms ↔ flattened_space: r = 0.833
+- angular_fragmentation ↔ sharp_angular_forms: r = 0.824
+- delicate_precise_lines ↔ loose_visible_brushstrokes: r = -0.817
+- geometric_shapes ↔ sharp_angular_forms: r = 0.804
+
+## Concept Clustering
+- Strict clustering (d < 0.1): 36 clusters
+- Moderate clustering (d < 0.3): 25 clusters
+
+## Recommendations
+⚠️ LOW EFFECTIVE RANK: Concept space has low dimensionality

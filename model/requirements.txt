@@ -1,0 +1,9 @@
+-r ../shared.txt
+
+anthropic
+matplotlib
+
+# CBM
+grad-cam
+timm
+tqdm

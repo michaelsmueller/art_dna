@@ -1,2 +1,11 @@
 pillow
 numpy
+pandas
+scikit-learn
+
+# VGG16 model / serving
+tensorflow==2.19.0
+
+# PyTorch
+torch>=2.6.0
+torchvision>=0.21.0

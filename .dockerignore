@@ -1,0 +1,11 @@
+# Python cache files within copied directories
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+
+# Model visualization outputs
+model/grad_cam_visual/
+
+# Git
+.git
+.gitignore

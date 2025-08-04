@@ -1,0 +1,42 @@
+FROM python:3.10-slim
+
+# Install system dependencies for graphics/image processing
+RUN apt-get update && apt-get install -y \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements files (shared-docker uses CPU-only tensorflow)
+COPY shared-docker.txt shared-docker.txt
+COPY api/requirements-docker.txt api/requirements-docker.txt
+COPY model/requirements-docker.txt model/requirements-docker.txt
+
+# Install dependencies (CPU-only tensorflow for smaller image)
+RUN pip install -r shared-docker.txt -r api/requirements-docker.txt -r model/requirements-docker.txt
+
+# Pre-download and save HuggingFace models to avoid rate limiting at runtime
+RUN mkdir -p /app/models && python -c "\
+from transformers import AutoImageProcessor, AutoModel; \
+print('Downloading DeiT model...'); \
+processor = AutoImageProcessor.from_pretrained('facebook/deit-base-distilled-patch16-224'); \
+model = AutoModel.from_pretrained('facebook/deit-base-distilled-patch16-224'); \
+processor.save_pretrained('/app/models/deit'); \
+model.save_pretrained('/app/models/deit'); \
+print('Model saved successfully!')"
+
+# Set Python path to include the app root
+ENV PYTHONPATH=/
+
+# Set matplotlib backend to non-interactive (prevents OpenGL issues)
+ENV MPLBACKEND=Agg
+
+# Copy application and data
+COPY api api
+COPY descriptions/ /descriptions/
+COPY model model
+COPY embeddings embeddings
+COPY raw_data/artists.csv raw_data/artists.csv
+
+# Cloud Run provides PORT environment variable
+EXPOSE $PORT
+CMD uvicorn api.fast:app --host 0.0.0.0 --port $PORT
