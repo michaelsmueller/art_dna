@@ -57,7 +57,9 @@ pca = joblib.load(f"{model_path}/pca_model.joblib")
 
 # Load precomputed images embeddings, and style names embeddings
 emb_path = "embeddings"
-style_text_embeddings = np.load("embeddings/style_text_embeddings.npy").astype(np.float32)
+style_text_embeddings = np.load("embeddings/style_text_embeddings.npy").astype(
+    np.float32
+)
 pca_embeddings = np.load("embeddings/pca_embeddings.npy").astype(np.float32)
 
 # Load CLIP model and preprocessing
@@ -66,12 +68,24 @@ model_clip.eval()
 
 # Style prompts - 18 classes
 style_prompts = [
-    'Abstractionism', 'Art Nouveau', 'Baroque',
-    'Byzantine Art', 'Cubism', 'Expressionism',
-    'Impressionism', 'Mannerism', 'Muralism',
-    'Neoplasticism', 'Pop Art', 'Primitivism',
-    'Realism', 'Renaissance', 'Romanticism',
-    'Suprematism', 'Surrealism', 'Symbolism'
+    "Abstractionism",
+    "Art Nouveau",
+    "Baroque",
+    "Byzantine Art",
+    "Cubism",
+    "Expressionism",
+    "Impressionism",
+    "Mannerism",
+    "Muralism",
+    "Neoplasticism",
+    "Pop Art",
+    "Primitivism",
+    "Realism",
+    "Renaissance",
+    "Romanticism",
+    "Suprematism",
+    "Surrealism",
+    "Symbolism",
 ]
 
 cluster_to_style = {
@@ -95,10 +109,12 @@ cluster_to_style = {
     17: "Romanticism",
 }
 
+
 @app.get("/")
 def root():
     """Health check endpoint"""
     return {"greeting": "Hello"}
+
 
 @app.get("/describe")
 def describe_genres(
@@ -138,19 +154,20 @@ def describe_genres(
 
 
 @app.post("/predict-kmeans-new")
-
 def predict_kmeans_new(image: UploadFile = File(...)) -> Dict[str, Any]:
     """
     Predict top-5 art styles and find 5 visually similar paintings using CLIP + PCA + KMeans.
     """
     try:
-        #Read and preprocess the uploaded image
+        # Read and preprocess the uploaded image
         image_bytes = image.file.read()
         img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
         image_tensor = preprocess(img).unsqueeze(0).to(device)
 
         with torch.no_grad():
-            image_embedding = model_clip.encode_image(image_tensor).cpu().numpy().astype(np.float32)
+            image_embedding = (
+                model_clip.encode_image(image_tensor).cpu().numpy().astype(np.float32)
+            )
 
         # Predict cluster using KMeans
         pred_cluster = kmeans.predict(image_embedding.astype(np.float64))[0]
@@ -160,7 +177,7 @@ def predict_kmeans_new(image: UploadFile = File(...)) -> Dict[str, Any]:
 
         cluster_center = kmeans.cluster_centers_[pred_cluster].astype(np.float32)
 
-        #Compare cluster center to style names CLIP embeddings
+        # Compare cluster center to style names CLIP embeddings
         cluster_center = kmeans.cluster_centers_[pred_cluster].astype(np.float32)
         similarities = np.dot(style_text_embeddings, cluster_center.T)
         top5_idx = similarities.argsort()[::-1][:5]
@@ -174,23 +191,23 @@ def predict_kmeans_new(image: UploadFile = File(...)) -> Dict[str, Any]:
             for i in top5_idx
         ]
 
-        #PCA transform the image embedding
+        # PCA transform the image embedding
         image_pca = pca.transform(image_embedding.astype(np.float64)).astype(np.float32)
 
-        #Restrict to images in the same cluster
+        # Restrict to images in the same cluster
         same_cluster_indices = np.where(kmeans.labels_ == pred_cluster)[0]
 
-        #Use Helpers class funciton to find similar paintings within cluster
+        # Use Helpers class funciton to find similar paintings within cluster
         similar_images = helpers.find_similar(
-            query_embedding=image_pca[0],
+            query_embedding=image_embedding[0],  # Use full CLIP embedding
             top_k=5,
-            restrict_indices=same_cluster_indices
+            restrict_indices=same_cluster_indices,
         )
 
         return {
             "best_match_art_style": best_match_art_style,
             "top_5_closest_styles": top5_closest_styles,
-            "similar_images": similar_images
+            "similar_images": similar_images,
         }
 
     except UnidentifiedImageError as e:
@@ -198,7 +215,9 @@ def predict_kmeans_new(image: UploadFile = File(...)) -> Dict[str, Any]:
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Prediction failed: {e}")
 
-#This is the API root for finding 5 similar images with DeIT, as in the previous app version
+
+# This is the API root for finding 5 similar images with DeIT, as in the previous app version
+
 
 @app.post("/similar")
 def find_similar_artworks(
