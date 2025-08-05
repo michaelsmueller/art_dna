@@ -1,0 +1,10 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-f', 'Dockerfile.vertex-base', '-t', 'gcr.io/art-dna-ml/art-dna-vertex-base:latest', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/art-dna-ml/art-dna-vertex-base:latest']
+
+options:
+  machineType: 'E2_HIGHCPU_8'
+  diskSizeGb: 50

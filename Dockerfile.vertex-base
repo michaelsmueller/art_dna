@@ -1,0 +1,50 @@
+# Base image with all dependencies (rebuild rarely)
+# Using CUDA 12.1.1 - verified to exist
+FROM nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04
+
+# Install Python 3.10 and essential tools
+RUN apt-get update && apt-get install -y \
+    python3.10 \
+    python3-pip \
+    python3.10-dev \
+    python3.10-distutils \
+    curl \
+    git \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    && ln -sf /usr/bin/python3.10 /usr/bin/python \
+    && ln -sf /usr/bin/python3.10 /usr/bin/python3 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Upgrade pip
+RUN python -m pip install --upgrade pip
+
+# Install Google Cloud SDK for gsutil
+RUN curl -sSL https://sdk.cloud.google.com | bash
+ENV PATH $PATH:/root/google-cloud-sdk/bin
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements files for better caching
+COPY shared.txt shared.txt
+COPY model/requirements.txt model/requirements.txt
+
+# Install PyTorch 2.6.0+ with CUDA 12.1 support
+RUN pip install --no-cache-dir \
+    torch>=2.6.0 torchvision>=0.21.0 torchaudio --index-url https://download.pytorch.org/whl/cu121
+
+# Install other dependencies
+RUN pip install --no-cache-dir \
+    -r shared.txt \
+    -r model/requirements.txt \
+    mlflow \
+    google-cloud-storage \
+    google-cloud-aiplatform
+
+# Environment setup
+ENV PYTHONPATH=/app
+ENV MPLBACKEND=Agg
+
+# Create necessary directories
+RUN mkdir -p raw_data

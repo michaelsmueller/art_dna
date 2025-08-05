@@ -72,6 +72,16 @@ class ConceptArtDataset(Dataset):
         # Verify data alignment
         self._verify_data_alignment()
 
+    def _map_image_path(self, img_path: str) -> str:
+        """Map local image path to GCS path when running in cloud environment."""
+        # SIMPLIFIED: Always use local paths since we download everything upfront
+        return img_path
+
+    def _load_image(self, img_path: str) -> Image.Image:
+        """Load image from local path."""
+        # SIMPLIFIED: Only load from local since we download everything upfront
+        return Image.open(img_path).convert("RGB")
+
     def _verify_data_alignment(self):
         """Verify that all images have concept labels."""
         missing_concepts = []
@@ -114,7 +124,9 @@ class ConceptArtDataset(Dataset):
         style_labels = torch.tensor(style_values, dtype=torch.float32)
 
         # Load and transform image
-        image = Image.open(img_path).convert("RGB")
+        # Map to GCS path if running in cloud environment
+        actual_img_path = self._map_image_path(img_path)
+        image = self._load_image(actual_img_path)
         if self.transform:
             image = self.transform(image)
 

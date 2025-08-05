@@ -4,7 +4,5 @@ art_dna.egg-info/
 __pycache__/
 .ipynb_checkpoints/
 .DS_Store
-
-# Model checkpoints and files 
-# *.pth
-# model/cbm/models/
+.cursorindexingignore
+.specstory/

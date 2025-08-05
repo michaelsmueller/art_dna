@@ -90,6 +90,44 @@ class ImprovedWeightedCBMTrainer(CBMTrainer):
             f"   Backbone params: {len(backbone_params)}, Head params: {len(head_params)}"
         )
 
+    def compute_metrics(
+        self, concept_logits, style_logits, concept_labels, style_labels
+    ):
+        """Enhanced metrics including weighted and micro F1 scores."""
+        # Get base metrics first
+        metrics = super().compute_metrics(
+            concept_logits, style_logits, concept_labels, style_labels
+        )
+
+        # Add missing weighted and micro F1 scores
+        with torch.no_grad():
+            # Convert to probabilities and predictions
+            style_probs = torch.sigmoid(style_logits)
+            style_preds = (style_probs > 0.5).float()
+
+            # Move to CPU for sklearn
+            style_true = style_labels.cpu().numpy()
+            style_pred = style_preds.cpu().numpy()
+
+            # Calculate additional F1 metrics
+            try:
+                style_f1_weighted = f1_score(
+                    style_true, style_pred, average="weighted", zero_division=0
+                )
+                style_f1_micro = f1_score(
+                    style_true, style_pred, average="micro", zero_division=0
+                )
+
+                metrics["style_f1_weighted"] = style_f1_weighted
+                metrics["style_f1_micro"] = style_f1_micro
+
+            except Exception as e:
+                print(f"Warning: F1 calculation failed: {e}")
+                metrics["style_f1_weighted"] = 0.0
+                metrics["style_f1_micro"] = 0.0
+
+        return metrics
+
     def train_epoch(self, train_loader, epoch):
         """Override to handle new metrics properly."""
         self.model.train()
