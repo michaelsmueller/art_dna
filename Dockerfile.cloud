@@ -14,15 +14,18 @@ COPY model/requirements-docker.txt model/requirements-docker.txt
 # Install dependencies (CPU-only tensorflow for smaller image)
 RUN pip install -r shared-docker.txt -r api/requirements-docker.txt -r model/requirements-docker.txt
 
-# Pre-download and save HuggingFace models to avoid rate limiting at runtime
+# Pre-download and save models to avoid rate limiting at runtime
 RUN mkdir -p /app/models && python -c "\
 from transformers import AutoImageProcessor, AutoModel; \
+import clip; \
 print('Downloading DeiT model...'); \
 processor = AutoImageProcessor.from_pretrained('facebook/deit-base-distilled-patch16-224'); \
 model = AutoModel.from_pretrained('facebook/deit-base-distilled-patch16-224'); \
 processor.save_pretrained('/app/models/deit'); \
 model.save_pretrained('/app/models/deit'); \
-print('Model saved successfully!')"
+print('Downloading CLIP model...'); \
+clip_model, clip_preprocess = clip.load('ViT-B/32'); \
+print('Models saved successfully!')"
 
 # Set Python path to include the app root
 ENV PYTHONPATH=/
