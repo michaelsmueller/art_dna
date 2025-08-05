@@ -81,6 +81,62 @@ def radar_barpolar(predictions, top_k=6):
     return color_map
 
 
+def concepts_bar_chart(concepts: list):
+    """Display concepts as a horizontal bar chart"""
+    if not concepts:
+        st.info("No visual elements detected")
+        return
+
+    # Extract concept names and activations (top 6)
+    # Clean up names: remove underscores and capitalize
+    labels = [c["name"].replace("_", " ").title() for c in concepts[:6]]
+    activations = [c["activation"] for c in concepts[:6]]
+
+    # Sort by activation for better readability
+    sorted_data = sorted(zip(labels, activations), key=lambda x: x[1])
+    labels, activations = zip(*sorted_data)
+
+    # Create varied blue-green gradient colors
+    colors = [
+        "#2E7D32",  # Dark green
+        "#43A047",  # Green
+        "#00ACC1",  # Cyan
+        "#039BE5",  # Light blue
+        "#1976D2",  # Blue
+        "#1565C0",  # Dark blue
+    ][: len(labels)]
+
+    # Create horizontal bar chart
+    fig = go.Figure(
+        go.Bar(
+            y=labels,
+            x=activations,
+            orientation="h",
+            marker=dict(color=colors, line=dict(width=0)),
+            text=[f"{act:.1%}" for act in activations],
+            textposition="auto",
+            hovertemplate="<b>%{y}</b><br>Activation: %{x:.3f}<extra></extra>",
+        )
+    )
+
+    fig.update_layout(
+        xaxis=dict(
+            title="",  # Removed "Activation" label
+            range=[0, 1],
+            tickformat=".0%",
+            gridcolor="rgba(0,0,0,0.1)",
+        ),
+        yaxis=dict(title="", tickfont=dict(size=12)),
+        height=250,  # Reduced height
+        margin=dict(l=10, r=10, t=10, b=15),  # Reduced bottom margin
+        showlegend=False,
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
+    )
+
+    st.plotly_chart(fig, use_container_width=True)
+
+
 def fetch_genre_descriptions(genres: list[str], audience: str = "adult"):
     metadata = {}
     try:
@@ -223,6 +279,7 @@ with main_container:
                 st.session_state.pop("predictions", None)
                 st.session_state.pop("similar_images", None)
                 st.session_state.pop("session_id", None)
+                st.session_state.pop("selected_genre", None)
 
             st.session_state["uploaded_file"] = uploaded
             st.session_state["image_bytes"] = uploaded.read()
@@ -260,9 +317,15 @@ if uploaded_file and analyze_clicked:
 
         if result and result.get("scores"):
             st.session_state["predictions"] = result["scores"]
+            st.session_state["concepts"] = result.get("concepts", [])
             st.session_state["session_id"] = result.get("session_id")
             st.session_state["used_url"] = used_url
             st.session_state["analysis_complete"] = True
+
+            # Auto-select the top predicted genre (highest score)
+            if result["scores"]:
+                top_genre = max(result["scores"].items(), key=lambda x: x[1])[0]
+                st.session_state["selected_genre"] = top_genre
         else:
             st.error("No predictions found.")
             st.stop()
@@ -300,7 +363,7 @@ if uploaded_file and st.session_state.get("analysis_complete", False):
         # === DISPLAY PREDICTIONS (inside right column) ===
         if "predictions" in st.session_state:
             predictions = st.session_state["predictions"]
-            st.markdown("## Art Style")
+            st.markdown("### Art Style")
 
             # Get predicted genres (score >= 1.0) for buttons, sorted by score (highest first)
             predicted_genres = {k: v for k, v in predictions.items() if v >= 1.0}
@@ -318,48 +381,45 @@ if uploaded_file and st.session_state.get("analysis_complete", False):
             button_col, desc_col = st.columns([1, 2])  # 1:2 ratio
 
             with button_col:
-                # Auto-select top result on first load
-                if (
-                    "selected_description" not in st.session_state
-                    or st.session_state["selected_description"] == ""
-                ):
-                    # Get the top genre (first in sorted dict)
-                    top_genre = list(predicted_genres_sorted.keys())[0]
-                    data = descriptions.get(top_genre, {})
-                    desc = data.get("description", "No description available.")
-                    time_period = data.get("time_period", "Unknown period")
-                    philosophy = data.get("philosophy", "")
-                    artists = ", ".join(data.get("key_artists", []))
+                # Fallback: Initialize selected genre if not set (should already be set after analysis)
+                if "selected_genre" not in st.session_state:
+                    st.session_state["selected_genre"] = list(
+                        predicted_genres_sorted.keys()
+                    )[0]
 
-                    st.session_state[
-                        "selected_description"
-                    ] = f"""
-**Description:** {desc}
-
-**Popular during:** {time_period}
-
-**Key artists:** {artists}
-
-**What it's about:** {philosophy}
-"""
-
-                # Create buttons for predicted genres (stacked vertically)
+                # Create buttons for each predicted genre
                 for genre, score in predicted_genres_sorted.items():
-                    data = descriptions.get(genre, {})
+                    # Determine button type based on selection
+                    button_type = (
+                        "primary"
+                        if genre == st.session_state["selected_genre"]
+                        else "secondary"
+                    )
+
+                    # Create button with unique key
                     if st.button(
                         f"{genre} ({score:.2f})",
-                        key=f"btn_{genre}",
+                        key=f"genre_btn_{genre}",
+                        type=button_type,
                         use_container_width=True,
                     ):
-                        # Update description when button is clicked
-                        desc = data.get("description", "No description available.")
-                        time_period = data.get("time_period", "Unknown period")
-                        philosophy = data.get("philosophy", "")
-                        artists = ", ".join(data.get("key_artists", []))
+                        # Update selected genre when clicked
+                        st.session_state["selected_genre"] = genre
+                        # Force rerun to update button states
+                        st.rerun()
 
-                        st.session_state[
-                            "selected_description"
-                        ] = f"""
+                selected_genre = st.session_state["selected_genre"]
+
+                # Update description for selected genre
+                data = descriptions.get(selected_genre, {})
+                desc = data.get("description", "No description available.")
+                time_period = data.get("time_period", "Unknown period")
+                philosophy = data.get("philosophy", "")
+                artists = ", ".join(data.get("key_artists", []))
+
+                st.session_state[
+                    "selected_description"
+                ] = f"""
 **Description:** {desc}
 
 **Popular during:** {time_period}
@@ -377,14 +437,18 @@ if uploaded_file and st.session_state.get("analysis_complete", False):
                     st.info("Click on a genre button to see details")
 
             # Show Visual Elements section
-            st.markdown("## Visual Elements")
-            genre_colors = radar_barpolar(predictions, top_k=6)
+            st.markdown("### Visual Elements")
+            concepts = st.session_state.get("concepts", [])
+            if concepts:
+                concepts_bar_chart(concepts)
+            else:
+                st.info("No visual elements detected")
 
         # === DISPLAY SIMILAR IMAGES (still inside right_col) ===
         if "similar_images" in st.session_state:
             similar_images = st.session_state["similar_images"]
             if similar_images:
-                st.markdown("## Similar Paintings")
+                st.markdown("### Similar Paintings")
                 cols = st.columns(5)
                 for idx, sim_img in enumerate(similar_images):
                     with cols[idx % 5]:
