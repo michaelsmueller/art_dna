@@ -19,10 +19,13 @@ from PIL import Image, UnidentifiedImageError
 
 from api.descriptions import DESCRIPTIONS
 from api.similarity import SimilarityService
+from api.helper_functions import Helpers
 
 import torch
 import torchvision.transforms as transforms
 import json
+import joblib
+import clip
 
 import uuid
 import time
@@ -56,6 +59,66 @@ with open("model/class_names.txt", "r", encoding="utf-8") as f:
 # Initialize similarity service
 similarity_service = SimilarityService()
 similarity_service.initialize()
+
+# Initialize helpers for k-means similarity
+helpers = Helpers()
+helpers.initialize()
+
+# Load K-Means models and embeddings
+device = "cuda" if torch.cuda.is_available() else "cpu"
+kmeans = joblib.load("model/kmeans_model.joblib")
+pca = joblib.load("model/pca_model.joblib")
+style_text_embeddings = np.load("embeddings/style_text_embeddings.npy").astype(
+    np.float32
+)
+pca_embeddings = np.load("embeddings/pca_embeddings.npy").astype(np.float32)
+
+# Load CLIP model
+model_clip, preprocess = clip.load("ViT-B/32", device=device)
+model_clip.eval()
+
+# Style prompts and cluster mappings
+style_prompts = [
+    "Abstractionism",
+    "Art Nouveau",
+    "Baroque",
+    "Byzantine Art",
+    "Cubism",
+    "Expressionism",
+    "Impressionism",
+    "Mannerism",
+    "Muralism",
+    "Neoplasticism",
+    "Pop Art",
+    "Primitivism",
+    "Realism",
+    "Renaissance",
+    "Romanticism",
+    "Suprematism",
+    "Surrealism",
+    "Symbolism",
+]
+
+cluster_to_style = {
+    0: "Cubism",
+    1: "Expressionism",
+    2: "Realism",
+    3: "Pop Art",
+    4: "Art Nouveau",
+    5: "Surrealism",
+    6: "Neoplasticism",
+    7: "Symbolism",
+    8: "Impressionism",
+    9: "Suprematism",
+    10: "Renaissance",
+    11: "Primitivism",
+    12: "Byzantine Art",
+    13: "Baroque",
+    14: "Abstractionism",
+    15: "Mannerism",
+    16: "Muralism",
+    17: "Romanticism",
+}
 
 # CBM model variables (lazy loaded)
 cbm_model = None
@@ -96,7 +159,14 @@ def load_cbm_model():
         cbm_model.eval()
 
         # Load optimal thresholds
-        cbm_thresholds = np.load("model/cbm/val_thresholds.npy")
+        try:
+            # Try new JSON format first
+            with open("model/cbm/optimal_thresholds.json", "r") as f:
+                threshold_data = json.load(f)
+                cbm_thresholds = np.array(threshold_data["optimal_thresholds"])
+        except FileNotFoundError:
+            # Fallback to old .npy format
+            cbm_thresholds = np.load("model/cbm/val_thresholds.npy")
 
         # Load concept names
         with open("model/cbm/data/final_concepts.json", "r") as f:
@@ -317,17 +387,21 @@ def predict_cbm(image: UploadFile = File(...)) -> Dict[str, Any]:
             style_probs = torch.sigmoid(style_logits).cpu().numpy()[0]
             concept_probs = torch.sigmoid(concept_logits).cpu().numpy()[0]
 
-        # Apply optimal thresholds
-        predicted_mask = style_probs >= cbm_thresholds
-        predicted_genres = [
-            class_names[i] for i, pred in enumerate(predicted_mask) if pred
-        ]
-
         # Format response (compatible with existing API)
         predictions = {
             class_names[i]: float(round(style_probs[i], 4))
             for i in range(len(class_names))
         }
+
+        # Calculate readiness scores (probability / threshold)
+        # This shows how "ready" each style is relative to its threshold
+        readiness = {
+            class_names[i]: float(style_probs[i] / cbm_thresholds[i])
+            for i in range(len(class_names))
+        }
+
+        # Apply optimal thresholds (readiness >= 1.0 means above threshold)
+        predicted_genres = [style for style, score in readiness.items() if score >= 1.0]
 
         # Top 5 concepts
         top_indices = np.argsort(concept_probs)[-5:][::-1]
@@ -354,8 +428,9 @@ def predict_cbm(image: UploadFile = File(...)) -> Dict[str, Any]:
         }
 
         return {
-            "predictions": predictions,
-            "predicted_genres": predicted_genres,
+            "predictions": predictions,  # Raw probabilities (backward compat)
+            "readiness": readiness,  # NEW: Threshold-normalized scores
+            "predicted_genres": predicted_genres,  # Where readiness >= 1.0
             "concepts": concepts,
             "confidence": float(round(np.max(style_probs), 3)),
             "model": "cbm-efficientnet-b3",
@@ -368,6 +443,69 @@ def predict_cbm(image: UploadFile = File(...)) -> Dict[str, Any]:
         raise HTTPException(
             status_code=500, detail=f"CBM prediction failed: {e}"
         ) from e
+
+
+@app.post("/predict_kmeans")
+def predict_kmeans(image: UploadFile = File(...)) -> Dict[str, Any]:
+    """
+    Predict top-5 art styles and find 5 visually similar paintings using CLIP + PCA + KMeans.
+    """
+    try:
+        # Read and preprocess the uploaded image
+        image_bytes = image.file.read()
+        img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+        image_tensor = preprocess(img).unsqueeze(0).to(device)
+
+        with torch.no_grad():
+            image_embedding = (
+                model_clip.encode_image(image_tensor).cpu().numpy().astype(np.float32)
+            )
+
+        # Predict cluster using KMeans
+        pred_cluster = kmeans.predict(image_embedding.astype(np.float64))[0]
+
+        # Get best-match style from the hardcoded cluster_to_style mapping
+        best_match_art_style = cluster_to_style.get(pred_cluster, "Unknown")
+
+        cluster_center = kmeans.cluster_centers_[pred_cluster].astype(np.float32)
+
+        # Compare cluster center to style names CLIP embeddings
+        cluster_center = kmeans.cluster_centers_[pred_cluster].astype(np.float32)
+        similarities = np.dot(style_text_embeddings, cluster_center.T)
+        top5_idx = similarities.argsort()[::-1][:5]
+
+        # Format top-5 predictions
+        top5_closest_styles = [
+            {
+                "art_style": style_prompts[i],
+                "similarity_score": round(float(similarities[i]), 2),
+            }
+            for i in top5_idx
+        ]
+
+        # PCA transform the image embedding
+        image_pca = pca.transform(image_embedding.astype(np.float64)).astype(np.float32)
+
+        # Restrict to images in the same cluster
+        same_cluster_indices = np.where(kmeans.labels_ == pred_cluster)[0]
+
+        # Use Helpers class function to find similar paintings within cluster
+        similar_images = helpers.find_similar(
+            query_embedding=image_embedding[0],  # Use full CLIP embedding
+            top_k=5,
+            restrict_indices=same_cluster_indices,
+        )
+
+        return {
+            "best_match_art_style": best_match_art_style,
+            "top_5_closest_styles": top5_closest_styles,
+            "similar_images": similar_images,
+        }
+
+    except UnidentifiedImageError as e:
+        raise HTTPException(status_code=400, detail=f"Invalid image file: {e}")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"K-means prediction failed: {e}")
 
 
 @app.get("/gradcam/{session_id}/style/{style_name}")
