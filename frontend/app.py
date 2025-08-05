@@ -9,15 +9,18 @@ import plotly.graph_objects as go
 from plotly.colors import sample_colorscale
 import streamlit.components.v1 as components
 
+
 def plotly_rgb_to_hex(rgb_str):
     rgb = rgb_str.strip("rgb()").split(",")
     return "#{:02x}{:02x}{:02x}".format(*[int(float(x)) for x in rgb])
+
 
 def genre_to_color_map(genres: list[str], colorscale="Turbo") -> dict:
     n = len(genres)
     positions = [i / (n - 1) if n > 1 else 0.5 for i in range(n)]
     colors = sample_colorscale(colorscale, positions, colortype="rgb")
     return dict(zip(genres, colors))
+
 
 def get_chart_data(predictions: dict, top_k: int):
     top_preds = sorted(predictions.items(), key=lambda x: x[1], reverse=True)[:top_k]
@@ -29,26 +32,34 @@ def get_chart_data(predictions: dict, top_k: int):
     max_r = max(r)
     return labels, r, angles, max_r
 
+
 def radar_barpolar(predictions, top_k=6):
     labels, r, angles, max_r = get_chart_data(predictions, top_k)
-    hover_text = [f"<span style='font-size:20px'><b>{round(score * 100)}%</b></span>" for score in r]
+    hover_text = [
+        f"<span style='font-size:20px'><b>{round(score * 100)}%</b></span>"
+        for score in r
+    ]
 
     color_map = genre_to_color_map(labels, colorscale="Turbo")
     rgb_colors = [color_map[genre] for genre in labels]
 
-    fig = go.Figure(go.Barpolar(
-        r=r,
-        theta=angles,
-        width=[(360 / len(labels)) * 0.3] * len(labels),
-        marker=dict(color=rgb_colors, line=dict(width=1)),
-        text=hover_text,
-        hoverinfo="text",
-        opacity=0.9
-    ))
+    fig = go.Figure(
+        go.Barpolar(
+            r=r,
+            theta=angles,
+            width=[(360 / len(labels)) * 0.3] * len(labels),
+            marker=dict(color=rgb_colors, line=dict(width=1)),
+            text=hover_text,
+            hoverinfo="text",
+            opacity=0.9,
+        )
+    )
 
     fig.update_layout(
         polar=dict(
-            radialaxis=dict(visible=False, showticklabels=False, showline=False, ticks=''),
+            radialaxis=dict(
+                visible=False, showticklabels=False, showline=False, ticks=""
+            ),
             angularaxis=dict(
                 tickvals=angles,
                 ticktext=labels,
@@ -57,25 +68,34 @@ def radar_barpolar(predictions, top_k=6):
                 direction="clockwise",
                 showline=False,
                 showticklabels=True,
-                ticks=''
-            )
+                ticks="",
+            ),
         ),
         showlegend=False,
         dragmode=False,
-        height=550
+        height=550,
     )
 
     st.plotly_chart(fig, use_container_width=True)
 
     return color_map
 
+
 def fetch_genre_descriptions(genres: list[str], audience: str = "adult"):
     metadata = {}
     try:
+        # Use the appropriate endpoint based on environment
+        if os.getenv("USE_GCS", "false").lower() == "true":
+            describe_url = (
+                "https://art-dna-api-521843227251.europe-west1.run.app/describe"
+            )
+        else:
+            describe_url = "http://localhost:8000/describe"
+
         res = requests.get(
-            "https://art-dna-api-521843227251.europe-west1.run.app/describe",
+            describe_url,
             params={"genres": ",".join(genres), "audience": audience},
-            timeout=5
+            timeout=5,
         )
 
         if res.ok:
@@ -86,7 +106,7 @@ def fetch_genre_descriptions(genres: list[str], audience: str = "adult"):
                     "time_period": item.get("time_period", ""),
                     "key_artists": item.get("key_artists", []),
                     "visual_elements": item.get("visual_elements", []),
-                    "philosophy": item.get("philosophy", "")
+                    "philosophy": item.get("philosophy", ""),
                 }
         else:
             for genre in genres:
@@ -95,7 +115,6 @@ def fetch_genre_descriptions(genres: list[str], audience: str = "adult"):
         for genre in genres:
             metadata[genre] = {"description": "Error fetching description."}
     return metadata
-
 
 
 # === Load environment variables ===
@@ -122,6 +141,7 @@ else:
         "https://art-dna-api-521843227251.europe-west1.run.app/similar"
     )
 
+
 # === Reusable function to send image to any API (style or similarity) ===
 def send_image_to_api(image_bytes, filename, mime, primary_url, fallback_url):
     files = {
@@ -141,6 +161,7 @@ def send_image_to_api(image_bytes, filename, mime, primary_url, fallback_url):
                     f"Failed to reach {url}: {e}"
                 )  # Show warning if request fails
     return None, None  # Return nothing if both fail
+
 
 # === App version displayed at the bottom of the UI ===
 APP_VERSION = "v1.0.2"
@@ -208,7 +229,9 @@ if uploaded_file:
             )
 
             if sim_result:
-                st.session_state["similar_images"] = sim_result.get("similar_images", [])
+                st.session_state["similar_images"] = sim_result.get(
+                    "similar_images", []
+                )
                 st.session_state["used_sim_url"] = used_sim_url
 
         # === DISPLAY PREDICTIONS (inside right column) ===
@@ -217,7 +240,9 @@ if uploaded_file:
             st.markdown("## Art Style Connections:")
             genre_colors = radar_barpolar(predictions, top_k=6)
             audience = "kid" if kid_mode else "adult"
-            descriptions = fetch_genre_descriptions(list(genre_colors.keys()), audience=audience)
+            descriptions = fetch_genre_descriptions(
+                list(genre_colors.keys()), audience=audience
+            )
 
             html = f"""
             <div class='audience-{audience}' style="font-family:sans-serif;">
@@ -229,19 +254,30 @@ if uploaded_file:
 
             for genre, color in genre_colors.items():
                 data = descriptions.get(genre, {})
-                desc = data.get("description", "No description available.").replace("'", "\\'").replace('"', "&quot;")
+                desc = (
+                    data.get("description", "No description available.")
+                    .replace("'", "\\'")
+                    .replace('"', "&quot;")
+                )
                 time_period = data.get("time_period", "Unknown period")
                 philosophy = data.get("philosophy", "")
                 artists = ", ".join(data.get("key_artists", []))
                 elements = ", ".join(data.get("visual_elements", []))
 
-                full_html = f"""
+                full_html = (
+                    f"""
                 <b>Description:</b> {desc}<br>
                 <b>Time period:</b> {time_period}<br>
                 <b>Key artists:</b> {artists}<br>
                 <b>Visual elements:</b> {elements}<br>
                 <b>Philosophy:</b> {philosophy}
-                """.replace("'", "\\'").replace('"', "&quot;").replace("\n", "").replace("\r", "")
+                """.replace(
+                        "'", "\\'"
+                    )
+                    .replace('"', "&quot;")
+                    .replace("\n", "")
+                    .replace("\r", "")
+                )
 
                 html += f"""
                 <div
