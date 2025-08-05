@@ -21,8 +21,6 @@ COPY model/cbm/data/full_extraction/full_concepts_complete.json model/cbm/data/f
 # Training scripts
 COPY scripts/train_cbm_vertex.py scripts/
 COPY scripts/train_cbm_weighted.py scripts/
-COPY scripts/train_cbm_weighted_lr_schedule.py scripts/
-COPY scripts/train_cbm_vertex_lr_schedule.py scripts/
 
 # Default command (will be overridden by Vertex AI job)
 CMD ["python", "scripts/train_cbm_vertex.py", "--help"]

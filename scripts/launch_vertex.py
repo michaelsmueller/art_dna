@@ -59,7 +59,7 @@ def generate_job_config(args):
     # Training arguments
     training_args = [
         "python",
-        args.script,
+        "scripts/train_cbm_vertex.py",
         "--epochs",
         str(args.epochs),
         "--batch-size",
@@ -213,14 +213,6 @@ def main():
     # Resume training
     parser.add_argument(
         "--resume-from", type=str, help="GCS checkpoint path to resume from"
-    )
-
-    # Training script selection
-    parser.add_argument(
-        "--script",
-        type=str,
-        default="scripts/train_cbm_vertex.py",
-        help="Training script to use (default: scripts/train_cbm_vertex.py)",
     )
 
     # Control
