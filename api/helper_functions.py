@@ -101,7 +101,7 @@ class Helpers:
 
             results = []
             for rank, local_idx in enumerate(top_indices):
-                # FIXED: restricted_paths already contains just filenames, no need for basename
+                # Restricted_paths contains filenames
                 filename = restricted_paths[local_idx]
 
                 # Build result dictionary
