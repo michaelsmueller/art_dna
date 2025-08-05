@@ -27,7 +27,7 @@ install:
 # === RUN ===
 
 run-backend:
-	uvicorn api.fast:app --reload --port 8000
+	uvicorn api.fast:app --reload --reload-dir api --port 8000
 
 run-frontend:
 	streamlit run frontend/app.py
