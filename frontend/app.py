@@ -122,23 +122,27 @@ load_dotenv()
 # === Set up API endpoints for style prediction ===
 if os.getenv("USE_GCS", "false").lower() == "true":
     # Running in production (cloud deployment)
-    API_URL_PRIMARY = "https://art-dna-api-521843227251.europe-west1.run.app/predict"
-    API_URL_FALLBACK = "http://localhost:8000/predict"
+    API_URL_PRIMARY = (
+        "https://art-dna-api-521843227251.europe-west1.run.app/predict_cbm"
+    )
+    API_URL_FALLBACK = "http://localhost:8000/predict_cbm"
 else:
     # Running locally (during development)
-    API_URL_PRIMARY = "http://localhost:8000/predict"
-    API_URL_FALLBACK = "https://art-dna-api-521843227251.europe-west1.run.app/predict"
+    API_URL_PRIMARY = "http://localhost:8000/predict_cbm"
+    API_URL_FALLBACK = (
+        "https://art-dna-api-521843227251.europe-west1.run.app/predict_cbm"
+    )
 
 # === Set up API endpoints for similarity search ===
 if os.getenv("USE_GCS", "false").lower() == "true":
     SIMILARITY_API_URL_PRIMARY = (
-        "https://art-dna-api-521843227251.europe-west1.run.app/similar"
+        "https://art-dna-api-521843227251.europe-west1.run.app/predict_kmeans"
     )
-    SIMILARITY_API_URL_FALLBACK = "http://localhost:8000/similar"
+    SIMILARITY_API_URL_FALLBACK = "http://localhost:8000/predict_kmeans"
 else:
-    SIMILARITY_API_URL_PRIMARY = "http://localhost:8000/similar"
+    SIMILARITY_API_URL_PRIMARY = "http://localhost:8000/predict_kmeans"
     SIMILARITY_API_URL_FALLBACK = (
-        "https://art-dna-api-521843227251.europe-west1.run.app/similar"
+        "https://art-dna-api-521843227251.europe-west1.run.app/predict_kmeans"
     )
 
 
@@ -161,6 +165,21 @@ def send_image_to_api(image_bytes, filename, mime, primary_url, fallback_url):
                     f"Failed to reach {url}: {e}"
                 )  # Show warning if request fails
     return None, None  # Return nothing if both fail
+
+
+# === Function for session-based API calls ===
+def call_session_api(session_id, primary_url, fallback_url):
+    """Make GET request to session-based endpoint"""
+    for url in [primary_url, fallback_url]:
+        try:
+            response = requests.get(f"{url}/{session_id}", timeout=30)
+            if response.status_code == 200:
+                return response.json(), url
+        except requests.RequestException:
+            pass
+        if url == primary_url:
+            st.warning(f"Primary API ({url}) failed. Trying fallback...")
+    return None, None
 
 
 # === App version displayed at the bottom of the UI ===
@@ -213,26 +232,36 @@ if uploaded_file:
                 API_URL_FALLBACK,
             )
 
-            if result and result.get("predictions"):
-                st.session_state["predictions"] = result["predictions"]
+            if result and result.get("scores"):
+                st.session_state["predictions"] = result[
+                    "scores"
+                ]  # Store scores as predictions for radar chart
+                st.session_state["session_id"] = result.get(
+                    "session_id"
+                )  # Store session ID
                 st.session_state["used_url"] = used_url
             else:
                 st.error("No predictions found.")
                 st.stop()
 
-            sim_result, used_sim_url = send_image_to_api(
-                img_bytes,
-                img_name,
-                img_type,
-                SIMILARITY_API_URL_PRIMARY,
-                SIMILARITY_API_URL_FALLBACK,
-            )
-
-            if sim_result:
-                st.session_state["similar_images"] = sim_result.get(
-                    "similar_images", []
+            # Use session-based k-means similarity (no re-upload needed)
+            session_id = st.session_state.get("session_id")
+            if session_id:
+                sim_result, used_sim_url = call_session_api(
+                    session_id,
+                    SIMILARITY_API_URL_PRIMARY,
+                    SIMILARITY_API_URL_FALLBACK,
                 )
-                st.session_state["used_sim_url"] = used_sim_url
+
+                if sim_result:
+                    st.session_state["similar_images"] = sim_result.get(
+                        "similar_images", []
+                    )
+                    st.session_state["used_sim_url"] = used_sim_url
+                else:
+                    st.warning("Could not fetch similar images.")
+            else:
+                st.error("No session ID available for similarity search.")
 
         # === DISPLAY PREDICTIONS (inside right column) ===
         if "predictions" in st.session_state:
