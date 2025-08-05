@@ -120,11 +120,13 @@ cluster_to_style = {
     17: "Romanticism",
 }
 
-# CBM model variables (lazy loaded)
+# CBM model variables (loaded at startup)
 cbm_model = None
 cbm_thresholds = None
 cbm_concept_names = None
 cbm_transform = None
+
+# CBM model will be loaded after function definition
 
 # Session cache for Grad-CAM (stores processed tensors)
 gradcam_sessions = {}
@@ -188,6 +190,12 @@ def load_cbm_model():
     except Exception as e:
         print(f"❌ Failed to load CBM model: {e}")
         raise HTTPException(status_code=503, detail=f"CBM model failed to load: {e}")
+
+
+# Load CBM model at startup
+print("🧠 Loading CBM model at startup...")
+load_cbm_model()
+print("✅ CBM model ready for requests!")
 
 
 def cleanup_expired_sessions():
@@ -373,7 +381,6 @@ def predict_cbm(image: UploadFile = File(...)) -> Dict[str, Any]:
     """
     Predict art style using CBM model with interpretable concepts.
     """
-    load_cbm_model()  # Lazy load
 
     try:
         # Process image
@@ -570,7 +577,6 @@ def predict_kmeans(image: UploadFile = File(...)) -> Dict[str, Any]:
 @app.get("/gradcam/{session_id}/style/{style_name}")
 def get_style_gradcam(session_id: str, style_name: str):
     """Generate Grad-CAM heatmap for a specific style prediction"""
-    load_cbm_model()  # Ensure model is loaded
 
     # Check session exists and isn't expired
     if session_id not in gradcam_sessions:
@@ -615,7 +621,6 @@ def get_style_gradcam(session_id: str, style_name: str):
 @app.get("/gradcam/{session_id}/concept/{concept_name}")
 def get_concept_gradcam(session_id: str, concept_name: str):
     """Generate Grad-CAM heatmap for a specific concept"""
-    load_cbm_model()  # Ensure model is loaded
 
     # Check session exists and isn't expired
     if session_id not in gradcam_sessions:
