@@ -387,28 +387,22 @@ def predict_cbm(image: UploadFile = File(...)) -> Dict[str, Any]:
             style_probs = torch.sigmoid(style_logits).cpu().numpy()[0]
             concept_probs = torch.sigmoid(concept_logits).cpu().numpy()[0]
 
-        # Format response (compatible with existing API)
-        predictions = {
-            class_names[i]: float(round(style_probs[i], 4))
+        # Calculate threshold-adjusted scores (probability / threshold)
+        # Score >= 1.0 means the style is predicted
+        scores = {
+            class_names[i]: float(round(style_probs[i] / cbm_thresholds[i], 3))
             for i in range(len(class_names))
         }
 
-        # Calculate readiness scores (probability / threshold)
-        # This shows how "ready" each style is relative to its threshold
-        readiness = {
-            class_names[i]: float(style_probs[i] / cbm_thresholds[i])
-            for i in range(len(class_names))
-        }
+        # Predicted genres where score >= 1.0
+        predicted_genres = [style for style, score in scores.items() if score >= 1.0]
 
-        # Apply optimal thresholds (readiness >= 1.0 means above threshold)
-        predicted_genres = [style for style, score in readiness.items() if score >= 1.0]
-
-        # Top 5 concepts
-        top_indices = np.argsort(concept_probs)[-5:][::-1]
+        # Top 6 concepts
+        top_indices = np.argsort(concept_probs)[-6:][::-1]
         concepts = [
             {
                 "name": cbm_concept_names[idx],
-                "score": float(round(concept_probs[idx], 3)),
+                "activation": float(round(concept_probs[idx], 3)),
             }
             for idx in top_indices
         ]
@@ -417,10 +411,11 @@ def predict_cbm(image: UploadFile = File(...)) -> Dict[str, Any]:
         session_id = str(uuid.uuid4())
         cleanup_expired_sessions()
 
-        # Store session data (processed tensor + model predictions)
+        # Store session data (processed tensor + model predictions + raw image)
         gradcam_sessions[session_id] = {
             "timestamp": time.time(),
             "img_tensor": img_tensor,  # Keep the processed tensor
+            "pil_image": pil_image,  # Keep the PIL image for k-means
             "concept_logits": concept_logits,
             "style_logits": style_logits,
             "concept_probs": concept_probs,
@@ -428,11 +423,9 @@ def predict_cbm(image: UploadFile = File(...)) -> Dict[str, Any]:
         }
 
         return {
-            "predictions": predictions,  # Raw probabilities (backward compat)
-            "readiness": readiness,  # NEW: Threshold-normalized scores
-            "predicted_genres": predicted_genres,  # Where readiness >= 1.0
+            "scores": scores,  # Threshold-adjusted scores (>= 1.0 = predicted)
+            "predicted_genres": predicted_genres,  # Where score >= 1.0
             "concepts": concepts,
-            "confidence": float(round(np.max(style_probs), 3)),
             "model": "cbm-efficientnet-b3",
             "session_id": session_id,
         }
@@ -443,6 +436,72 @@ def predict_cbm(image: UploadFile = File(...)) -> Dict[str, Any]:
         raise HTTPException(
             status_code=500, detail=f"CBM prediction failed: {e}"
         ) from e
+
+
+@app.get("/predict_kmeans/{session_id}")
+def predict_kmeans_session(session_id: str) -> Dict[str, Any]:
+    """
+    Get k-means predictions and similar images using cached image from CBM session.
+    """
+    # Check session exists and isn't expired
+    if session_id not in gradcam_sessions:
+        raise HTTPException(status_code=404, detail="Session not found or expired")
+
+    session_data = gradcam_sessions[session_id]
+    if time.time() - session_data["timestamp"] > SESSION_TIMEOUT:
+        del gradcam_sessions[session_id]
+        raise HTTPException(status_code=404, detail="Session expired")
+
+    try:
+        # Use cached PIL image
+        img = session_data["pil_image"]
+        image_tensor = preprocess(img).unsqueeze(0).to(device)
+
+        with torch.no_grad():
+            image_embedding = (
+                model_clip.encode_image(image_tensor).cpu().numpy().astype(np.float32)
+            )
+
+        # Predict cluster using KMeans
+        pred_cluster = kmeans.predict(image_embedding.astype(np.float64))[0]
+
+        # Get best-match style from the hardcoded cluster_to_style mapping
+        best_match_art_style = cluster_to_style.get(pred_cluster, "Unknown")
+
+        cluster_center = kmeans.cluster_centers_[pred_cluster].astype(np.float32)
+
+        # Compare cluster center to style names CLIP embeddings
+        similarities = np.dot(style_text_embeddings, cluster_center.T)
+        top5_idx = similarities.argsort()[::-1][:5]
+
+        # Format top-5 predictions
+        top5_closest_styles = [
+            {
+                "art_style": style_prompts[i],
+                "similarity_score": round(float(similarities[i]), 2),
+            }
+            for i in top5_idx
+        ]
+
+        # Restrict to images in the same cluster
+        same_cluster_indices = np.where(kmeans.labels_ == pred_cluster)[0]
+
+        # Use Helpers class function to find similar paintings within cluster
+        similar_images = helpers.find_similar(
+            query_embedding=image_embedding[0],  # Use full CLIP embedding
+            top_k=5,
+            restrict_indices=same_cluster_indices,
+        )
+
+        return {
+            "session_id": session_id,
+            "best_match_art_style": best_match_art_style,
+            "top_5_closest_styles": top5_closest_styles,
+            "similar_images": similar_images,
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"K-means prediction failed: {e}")
 
 
 @app.post("/predict_kmeans")
