@@ -87,10 +87,10 @@ def concepts_bar_chart(concepts: list):
         st.info("No visual elements detected")
         return
 
-    # Extract concept names and activations (top 6)
+    # Extract concept names and activations (top 5)
     # Clean up names: remove underscores and capitalize
-    labels = [c["name"].replace("_", " ").title() for c in concepts[:6]]
-    activations = [c["activation"] for c in concepts[:6]]
+    labels = [c["name"].replace("_", " ").title() for c in concepts[:5]]
+    activations = [c["activation"] for c in concepts[:5]]
 
     # Sort by activation for better readability
     sorted_data = sorted(zip(labels, activations), key=lambda x: x[1])
@@ -251,7 +251,7 @@ main_container = st.container()
 with main_container:
     st.title("Art-DNA 🎨")  # Main app title
     st.markdown(
-        "<h4 style='font-size: 1.4rem; font-weight: 400;'>Discover the artistic heritage of a painting</h4>",
+        "<h4 style='font-size: 1.4rem; font-weight: 400; font-style: italic;'>Discover the artistic heritage of a painting</h4>",
         unsafe_allow_html=True,
     )
 
@@ -404,9 +404,9 @@ if uploaded_file and st.session_state.get("analysis_complete", False):
                         use_container_width=True,
                     ):
                         # Update selected genre when clicked
-                        st.session_state["selected_genre"] = genre
-                        # Force rerun to update button states
-                        st.rerun()
+                        if st.session_state.get("selected_genre") != genre:
+                            st.session_state["selected_genre"] = genre
+                            st.rerun()
 
                 selected_genre = st.session_state["selected_genre"]
 
@@ -452,7 +452,18 @@ if uploaded_file and st.session_state.get("analysis_complete", False):
                 cols = st.columns(5)
                 for idx, sim_img in enumerate(similar_images):
                     with cols[idx % 5]:
-                        st.image(sim_img.get("image_url"), use_container_width=True)
+                        image_url = sim_img.get("image_url", "")
+                        try:
+                            # Try to display the image
+                            if image_url:
+                                st.image(image_url, use_container_width=True)
+                            else:
+                                st.info("Image not available")
+                        except Exception as e:
+                            # If image fails to load, show placeholder
+                            st.info("Image not available")
+                            print(f"Failed to load image: {image_url}, Error: {e}")
+
                         artist = sim_img.get("artist_name", "Unknown Artist")
                         score = sim_img.get("similarity_score", 0)
                         st.caption(f"{artist}\n({score:.2f})")

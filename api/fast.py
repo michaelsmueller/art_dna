@@ -533,8 +533,6 @@ def predict_kmeans(image: UploadFile = File(...)) -> Dict[str, Any]:
         # Get best-match style from the hardcoded cluster_to_style mapping
         best_match_art_style = cluster_to_style.get(pred_cluster, "Unknown")
 
-        cluster_center = kmeans.cluster_centers_[pred_cluster].astype(np.float32)
-
         # Compare cluster center to style names CLIP embeddings
         cluster_center = kmeans.cluster_centers_[pred_cluster].astype(np.float32)
         similarities = np.dot(style_text_embeddings, cluster_center.T)
