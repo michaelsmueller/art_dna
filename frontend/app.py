@@ -266,7 +266,9 @@ with main_container:
 
     with upload_col:
         # File upload widget
-        uploaded = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+        uploaded = st.file_uploader(
+            "Upload an image", type=["jpg", "jpeg", "png"], label_visibility="hidden"
+        )
 
         # Store file on upload and clear previous results
         if uploaded:
@@ -296,10 +298,9 @@ with main_container:
         if uploaded_file:
             st.markdown("")  # Small spacing
             analyze_clicked = st.button(
-                "🎨 What is this art style?",
+                "Analyze art style",
                 type="primary",
                 use_container_width=True,
-                help="Click to analyze the artistic style of your uploaded image",
             )
         else:
             analyze_clicked = False
