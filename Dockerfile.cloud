@@ -14,15 +14,31 @@ COPY model/requirements-docker.txt model/requirements-docker.txt
 # Install dependencies (CPU-only tensorflow for smaller image)
 RUN pip install -r shared-docker.txt -r api/requirements-docker.txt -r model/requirements-docker.txt
 
-# Pre-download and save HuggingFace models to avoid rate limiting at runtime
+# Install Google Cloud SDK for gsutil
+RUN apt-get update && apt-get install -y curl gnupg && \
+    echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
+    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add - && \
+    apt-get update && apt-get install -y google-cloud-sdk && \
+    rm -rf /var/lib/apt/lists/*
+
+# Pre-download and save models to avoid rate limiting at runtime
 RUN mkdir -p /app/models && python -c "\
 from transformers import AutoImageProcessor, AutoModel; \
+import clip; \
 print('Downloading DeiT model...'); \
 processor = AutoImageProcessor.from_pretrained('facebook/deit-base-distilled-patch16-224'); \
 model = AutoModel.from_pretrained('facebook/deit-base-distilled-patch16-224'); \
 processor.save_pretrained('/app/models/deit'); \
 model.save_pretrained('/app/models/deit'); \
-print('Model saved successfully!')"
+print('Downloading CLIP model...'); \
+clip_model, clip_preprocess = clip.load('ViT-B/32'); \
+print('Models saved successfully!')"
+
+# Download large models from GCS during build
+RUN mkdir -p /model/vgg16 /model/cbm && \
+    gsutil cp gs://art-dna-ml-data/models/vgg16/model_3_vgg16_finetuned.keras /model/vgg16/vgg16_model.keras && \
+    gsutil cp gs://art-dna-ml-models/cbm/production/cbm_weighted_best.pth /model/cbm/cbm_weighted_best.pth && \
+    echo "✅ Downloaded VGG16 and CBM models from GCS"
 
 # Set Python path to include the app root
 ENV PYTHONPATH=/

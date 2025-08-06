@@ -5,3 +5,6 @@ uvicorn
 
 # DeiT Similarity
 transformers
+
+# CLIP for k-means similarity
+openai-clip

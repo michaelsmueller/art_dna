@@ -63,7 +63,7 @@ def radar_barpolar(predictions, top_k=6):
             angularaxis=dict(
                 tickvals=angles,
                 ticktext=labels,
-                tickfont=dict(size=24),
+                tickfont=dict(size=20),
                 rotation=60,
                 direction="clockwise",
                 showline=False,
@@ -73,12 +73,68 @@ def radar_barpolar(predictions, top_k=6):
         ),
         showlegend=False,
         dragmode=False,
-        height=550,
+        height=400,
     )
 
     st.plotly_chart(fig, use_container_width=True)
 
     return color_map
+
+
+def concepts_bar_chart(concepts: list):
+    """Display concepts as a horizontal bar chart"""
+    if not concepts:
+        st.info("No visual elements detected")
+        return
+
+    # Extract concept names and activations (top 5)
+    # Clean up names: remove underscores and capitalize
+    labels = [c["name"].replace("_", " ").title() for c in concepts[:5]]
+    activations = [c["activation"] for c in concepts[:5]]
+
+    # Sort by activation for better readability
+    sorted_data = sorted(zip(labels, activations), key=lambda x: x[1])
+    labels, activations = zip(*sorted_data)
+
+    # Create varied blue-green gradient colors
+    colors = [
+        "#2E7D32",  # Dark green
+        "#43A047",  # Green
+        "#00ACC1",  # Cyan
+        "#039BE5",  # Light blue
+        "#1976D2",  # Blue
+        "#1565C0",  # Dark blue
+    ][: len(labels)]
+
+    # Create horizontal bar chart
+    fig = go.Figure(
+        go.Bar(
+            y=labels,
+            x=activations,
+            orientation="h",
+            marker=dict(color=colors, line=dict(width=0)),
+            text=[f"{act:.1%}" for act in activations],
+            textposition="auto",
+            hovertemplate="<b>%{y}</b><br>Activation: %{x:.3f}<extra></extra>",
+        )
+    )
+
+    fig.update_layout(
+        xaxis=dict(
+            title="",  # Removed "Activation" label
+            range=[0, 1],
+            tickformat=".0%",
+            gridcolor="rgba(0,0,0,0.1)",
+        ),
+        yaxis=dict(title="", tickfont=dict(size=12)),
+        height=250,  # Reduced height
+        margin=dict(l=10, r=10, t=10, b=15),  # Reduced bottom margin
+        showlegend=False,
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
+    )
+
+    st.plotly_chart(fig, use_container_width=True)
 
 
 def fetch_genre_descriptions(genres: list[str], audience: str = "adult"):
@@ -122,23 +178,27 @@ load_dotenv()
 # === Set up API endpoints for style prediction ===
 if os.getenv("USE_GCS", "false").lower() == "true":
     # Running in production (cloud deployment)
-    API_URL_PRIMARY = "https://art-dna-api-521843227251.europe-west1.run.app/predict"
-    API_URL_FALLBACK = "http://localhost:8000/predict"
+    API_URL_PRIMARY = (
+        "https://art-dna-api-521843227251.europe-west1.run.app/predict_cbm"
+    )
+    API_URL_FALLBACK = "http://localhost:8000/predict_cbm"
 else:
     # Running locally (during development)
-    API_URL_PRIMARY = "http://localhost:8000/predict"
-    API_URL_FALLBACK = "https://art-dna-api-521843227251.europe-west1.run.app/predict"
+    API_URL_PRIMARY = "http://localhost:8000/predict_cbm"
+    API_URL_FALLBACK = (
+        "https://art-dna-api-521843227251.europe-west1.run.app/predict_cbm"
+    )
 
 # === Set up API endpoints for similarity search ===
 if os.getenv("USE_GCS", "false").lower() == "true":
     SIMILARITY_API_URL_PRIMARY = (
-        "https://art-dna-api-521843227251.europe-west1.run.app/similar"
+        "https://art-dna-api-521843227251.europe-west1.run.app/predict_kmeans"
     )
-    SIMILARITY_API_URL_FALLBACK = "http://localhost:8000/similar"
+    SIMILARITY_API_URL_FALLBACK = "http://localhost:8000/predict_kmeans"
 else:
-    SIMILARITY_API_URL_PRIMARY = "http://localhost:8000/similar"
+    SIMILARITY_API_URL_PRIMARY = "http://localhost:8000/predict_kmeans"
     SIMILARITY_API_URL_FALLBACK = (
-        "https://art-dna-api-521843227251.europe-west1.run.app/similar"
+        "https://art-dna-api-521843227251.europe-west1.run.app/predict_kmeans"
     )
 
 
@@ -149,81 +209,133 @@ def send_image_to_api(image_bytes, filename, mime, primary_url, fallback_url):
     }  # Package image as a file
     for url in [primary_url, fallback_url]:  # Try primary first, then fallback
         try:
-            response = requests.post(url, files=files, timeout=10)  # Send the image
+            response = requests.post(
+                url, files=files, timeout=60
+            )  # Send the image (longer for model loading)
             if (
                 response.status_code == 200
                 and response.headers.get("content-type") == "application/json"
             ):
                 return response.json(), url  # Return result if successful
         except Exception as e:
-            if debug_mode:
-                st.warning(
-                    f"Failed to reach {url}: {e}"
-                )  # Show warning if request fails
+            pass  # Try next URL
     return None, None  # Return nothing if both fail
+
+
+# === Function for session-based API calls ===
+def call_session_api(session_id, primary_url, fallback_url):
+    """Make GET request to session-based endpoint"""
+    for url in [primary_url, fallback_url]:
+        try:
+            response = requests.get(f"{url}/{session_id}", timeout=60)
+            if response.status_code == 200:
+                return response.json(), url
+        except requests.RequestException:
+            pass
+        if url == primary_url:
+            st.warning(f"Primary API ({url}) failed. Trying fallback...")
+    return None, None
 
 
 # === App version displayed at the bottom of the UI ===
 APP_VERSION = "v1.0.2"
 
 # === Configure Streamlit page layout and title ===
-st.set_page_config(layout="wide")  # Use full width layout
-st.title("Art Style Explorer 🎨")  # Main app title
-st.set_page_config(layout="wide")  # Use full width layout
-st.markdown(
-    "<h4 style='font-size: 1.4rem; font-weight: 400;'>A dialogue between artists across centuries</h4>",
-    unsafe_allow_html=True,
-)
+st.set_page_config(
+    layout="wide", initial_sidebar_state="collapsed"
+)  # Use full width layout
 
-# === Optional debug mode checkbox ===
-debug_mode = st.checkbox("Debug Mode")
-kid_mode = st.checkbox("Kid Version")
+# Add container to control layout
+main_container = st.container()
 
-# === File upload widget ===
-uploaded = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+with main_container:
+    st.title("Art-DNA 🎨")  # Main app title
+    st.markdown(
+        "<h4 style='font-size: 1.4rem; font-weight: 400; font-style: italic;'>Discover the artistic heritage of a painting</h4>",
+        unsafe_allow_html=True,
+    )
 
-# Store file on upload
-if uploaded:
-    st.session_state["uploaded_file"] = uploaded
-    st.session_state["image_bytes"] = uploaded.read()
-    st.session_state["image_name"] = uploaded.name
-    st.session_state["image_type"] = uploaded.type
+    # === Kid Version checkbox ===
+    kid_mode = st.checkbox("Kid Mode")
 
-# Restore from session_state
-uploaded_file = st.session_state.get("uploaded_file")
-img_bytes = st.session_state.get("image_bytes")
-img_name = st.session_state.get("image_name")
-img_type = st.session_state.get("image_type")
+    # === PROMINENT UPLOAD SECTION ===
+    st.markdown("### Upload Your Artwork")
 
-# === MAIN LAYOUT ===
-if uploaded_file:
-    left_col, right_col = st.columns(2)
+    # Use left half of screen for upload section
+    upload_col, _ = st.columns([1, 1])
 
-    with left_col:
-        st.image(uploaded_file, caption="Uploaded Image", use_container_width=True)
+    with upload_col:
+        # File upload widget
+        uploaded = st.file_uploader(
+            "Upload an image", type=["jpg", "jpeg", "png"], label_visibility="hidden"
+        )
 
-    with right_col:
-        # Prediction trigger
-        if st.button("Explore the artistic DNA of your image"):
-            result, used_url = send_image_to_api(
-                img_bytes,
-                img_name,
-                img_type,
-                API_URL_PRIMARY,
-                API_URL_FALLBACK,
+        # Store file on upload and clear previous results
+        if uploaded:
+            # Check if this is a new file
+            current_file_name = st.session_state.get("image_name", "")
+            if uploaded.name != current_file_name:
+                # Clear all previous results when new file is selected
+                st.session_state["selected_description"] = ""
+                st.session_state["analysis_complete"] = False
+                st.session_state.pop("predictions", None)
+                st.session_state.pop("similar_images", None)
+                st.session_state.pop("session_id", None)
+                st.session_state.pop("selected_genre", None)
+
+            st.session_state["uploaded_file"] = uploaded
+            st.session_state["image_bytes"] = uploaded.read()
+            st.session_state["image_name"] = uploaded.name
+            st.session_state["image_type"] = uploaded.type
+
+        # Restore from session_state
+        uploaded_file = st.session_state.get("uploaded_file")
+        img_bytes = st.session_state.get("image_bytes")
+        img_name = st.session_state.get("image_name")
+        img_type = st.session_state.get("image_type")
+
+        # Show analyze button (always visible when file is uploaded)
+        if uploaded_file:
+            st.markdown("")  # Small spacing
+            analyze_clicked = st.button(
+                "Analyze art style",
+                type="primary",
+                use_container_width=True,
             )
+        else:
+            analyze_clicked = False
+# === ANALYSIS EXECUTION ===
+if uploaded_file and analyze_clicked:
+    # Show loading spinner and perform analysis
+    with st.spinner("Analyzing artwork..."):
+        result, used_url = send_image_to_api(
+            img_bytes,
+            img_name,
+            img_type,
+            API_URL_PRIMARY,
+            API_URL_FALLBACK,
+        )
 
-            if result and result.get("predictions"):
-                st.session_state["predictions"] = result["predictions"]
-                st.session_state["used_url"] = used_url
-            else:
-                st.error("No predictions found.")
-                st.stop()
+        if result and result.get("scores"):
+            st.session_state["predictions"] = result["scores"]
+            st.session_state["concepts"] = result.get("concepts", [])
+            st.session_state["session_id"] = result.get("session_id")
+            st.session_state["used_url"] = used_url
+            st.session_state["analysis_complete"] = True
 
-            sim_result, used_sim_url = send_image_to_api(
-                img_bytes,
-                img_name,
-                img_type,
+            # Auto-select the top predicted genre (highest score)
+            if result["scores"]:
+                top_genre = max(result["scores"].items(), key=lambda x: x[1])[0]
+                st.session_state["selected_genre"] = top_genre
+        else:
+            st.error("No predictions found.")
+            st.stop()
+
+        # Use session-based k-means similarity (no re-upload needed)
+        session_id = st.session_state.get("session_id")
+        if session_id:
+            sim_result, used_sim_url = call_session_api(
+                session_id,
                 SIMILARITY_API_URL_PRIMARY,
                 SIMILARITY_API_URL_FALLBACK,
             )
@@ -233,90 +345,129 @@ if uploaded_file:
                     "similar_images", []
                 )
                 st.session_state["used_sim_url"] = used_sim_url
+            else:
+                st.warning("Could not fetch similar images.")
+        else:
+            st.error("No session ID available for similarity search.")
+
+# === RESULTS DISPLAY (only show after analysis is complete) ===
+if uploaded_file and st.session_state.get("analysis_complete", False):
+    st.divider()
+
+    left_col, right_col = st.columns(2)
+
+    with left_col:
+        st.image(uploaded_file, caption="Uploaded Image", use_container_width=True)
+
+    with right_col:
 
         # === DISPLAY PREDICTIONS (inside right column) ===
         if "predictions" in st.session_state:
             predictions = st.session_state["predictions"]
-            st.markdown("## Art Style Connections:")
-            genre_colors = radar_barpolar(predictions, top_k=6)
-            audience = "kid" if kid_mode else "adult"
-            descriptions = fetch_genre_descriptions(
-                list(genre_colors.keys()), audience=audience
+            st.markdown("### Art Style")
+
+            # Get predicted genres (score >= 1.0) for buttons, sorted by score (highest first)
+            predicted_genres = {k: v for k, v in predictions.items() if v >= 1.0}
+            predicted_genres_sorted = dict(
+                sorted(predicted_genres.items(), key=lambda x: x[1], reverse=True)
             )
 
-            html = f"""
-            <div class='audience-{audience}' style="font-family:sans-serif;">
-                <div id='hover_result' style='font-size:16px;color:#333;padding:10px;
-                    min-height:160px; max-height:200px; overflow-y:auto; background-color:#fafafa;
-                    border:1px solid #ccc; border-radius:6px; margin-bottom:30px;'></div>
-                <div style="display:flex; flex-wrap:wrap; gap:20px;">
-            """
+            # Fetch descriptions for predicted genres
+            audience = "kid" if kid_mode else "adult"
+            descriptions = fetch_genre_descriptions(
+                list(predicted_genres_sorted.keys()), audience=audience
+            )
 
-            for genre, color in genre_colors.items():
-                data = descriptions.get(genre, {})
-                desc = (
-                    data.get("description", "No description available.")
-                    .replace("'", "\\'")
-                    .replace('"', "&quot;")
-                )
+            # Create layout: buttons on left, description on right
+            button_col, desc_col = st.columns([1, 2])  # 1:2 ratio
+
+            with button_col:
+                # Fallback: Initialize selected genre if not set (should already be set after analysis)
+                if "selected_genre" not in st.session_state:
+                    st.session_state["selected_genre"] = list(
+                        predicted_genres_sorted.keys()
+                    )[0]
+
+                # Create buttons for each predicted genre
+                for genre, score in predicted_genres_sorted.items():
+                    # Determine button type based on selection
+                    button_type = (
+                        "primary"
+                        if genre == st.session_state["selected_genre"]
+                        else "secondary"
+                    )
+
+                    # Create button with unique key
+                    if st.button(
+                        f"{genre} ({score:.2f})",
+                        key=f"genre_btn_{genre}",
+                        type=button_type,
+                        use_container_width=True,
+                    ):
+                        # Update selected genre when clicked
+                        if st.session_state.get("selected_genre") != genre:
+                            st.session_state["selected_genre"] = genre
+                            st.rerun()
+
+                selected_genre = st.session_state["selected_genre"]
+
+                # Update description for selected genre
+                data = descriptions.get(selected_genre, {})
+                desc = data.get("description", "No description available.")
                 time_period = data.get("time_period", "Unknown period")
                 philosophy = data.get("philosophy", "")
                 artists = ", ".join(data.get("key_artists", []))
-                elements = ", ".join(data.get("visual_elements", []))
 
-                full_html = (
-                    f"""
-                <b>Description:</b> {desc}<br>
-                <b>Time period:</b> {time_period}<br>
-                <b>Key artists:</b> {artists}<br>
-                <b>Visual elements:</b> {elements}<br>
-                <b>Philosophy:</b> {philosophy}
-                """.replace(
-                        "'", "\\'"
-                    )
-                    .replace('"', "&quot;")
-                    .replace("\n", "")
-                    .replace("\r", "")
-                )
+                st.session_state[
+                    "selected_description"
+                ] = f"""
+**Description:** {desc}
 
-                html += f"""
-                <div
-                    onmouseover="this.style.backgroundColor='#e0e0ff'; document.getElementById('hover_result').innerHTML = '{full_html}';"
-                    onmouseout="this.style.backgroundColor='#f0f0f0'; document.getElementById('hover_result').innerHTML = '';"
-                    style="padding:8px 16px; border:1px solid #888; border-radius:5px;
-                    background-color:#f0f0f0; color:{color}; font-size:16px; cursor:pointer;">
-                    {genre}
-                </div>
-                """
+**Popular during:** {time_period}
 
-            html += "</div></div>"
-            components.html(html, height=350)
+**Key artists:** {artists}
+
+**What it's about:** {philosophy}
+"""
+
+            with desc_col:
+                # Show description area
+                if st.session_state["selected_description"]:
+                    st.markdown(st.session_state["selected_description"])
+                else:
+                    st.info("Click on a genre button to see details")
+
+            # Show Visual Elements section
+            st.markdown("### Visual Elements")
+            concepts = st.session_state.get("concepts", [])
+            if concepts:
+                concepts_bar_chart(concepts)
+            else:
+                st.info("No visual elements detected")
 
         # === DISPLAY SIMILAR IMAGES (still inside right_col) ===
         if "similar_images" in st.session_state:
             similar_images = st.session_state["similar_images"]
             if similar_images:
-                st.markdown("---")
-                st.markdown("## Shared Visual Features:")
+                st.markdown("### Similar Paintings")
                 cols = st.columns(5)
                 for idx, sim_img in enumerate(similar_images):
                     with cols[idx % 5]:
-                        st.image(sim_img.get("image_url"), use_container_width=True)
+                        image_url = sim_img.get("image_url", "")
+                        try:
+                            # Try to display the image
+                            if image_url:
+                                st.image(image_url, use_container_width=True)
+                            else:
+                                st.info("Image not available")
+                        except Exception as e:
+                            # If image fails to load, show placeholder
+                            st.info("Image not available")
+                            print(f"Failed to load image: {image_url}, Error: {e}")
+
                         artist = sim_img.get("artist_name", "Unknown Artist")
                         score = sim_img.get("similarity_score", 0)
-                        st.caption(f"{artist}\nScore: {score:.2f}")
-
-        # === DEBUG INFO ===
-        if debug_mode:
-            st.divider()
-            st.markdown("Debug Info - Style Prediction API")
-            st.write("API Used:", st.session_state.get("used_url"))
-            st.json(st.session_state.get("predictions"))
-
-            st.markdown("Debug Info - Similarity API")
-            st.write("API Used:", st.session_state.get("used_sim_url"))
-            st.json(st.session_state.get("similar_images"))
-
+                        st.caption(f"{artist}\n({score:.2f})")
 
 # === FOOTER ===
 st.markdown(f"<hr><small>App version: {APP_VERSION}</small>", unsafe_allow_html=True)
