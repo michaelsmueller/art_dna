@@ -140,13 +140,8 @@ def concepts_bar_chart(concepts: list):
 def fetch_genre_descriptions(genres: list[str], audience: str = "adult"):
     metadata = {}
     try:
-        # Use the appropriate endpoint based on environment
-        if os.getenv("USE_GCS", "false").lower() == "true":
-            describe_url = (
-                "https://art-dna-api-521843227251.europe-west1.run.app/describe"
-            )
-        else:
-            describe_url = "http://localhost:8000/describe"
+        # Use Cloud Run API endpoint
+        describe_url = "https://art-dna-api-521843227251.europe-west1.run.app/describe"
 
         res = requests.get(
             describe_url,
@@ -175,31 +170,14 @@ def fetch_genre_descriptions(genres: list[str], audience: str = "adult"):
 
 # === Load environment variables ===
 load_dotenv()
-# === Set up API endpoints for style prediction ===
-if os.getenv("USE_GCS", "false").lower() == "true":
-    # Running in production (cloud deployment)
-    API_URL_PRIMARY = (
-        "https://art-dna-api-521843227251.europe-west1.run.app/predict_cbm"
-    )
-    API_URL_FALLBACK = "http://localhost:8000/predict_cbm"
-else:
-    # Running locally (during development)
-    API_URL_PRIMARY = "http://localhost:8000/predict_cbm"
-    API_URL_FALLBACK = (
-        "https://art-dna-api-521843227251.europe-west1.run.app/predict_cbm"
-    )
+# === API endpoints (hardcoded to Cloud Run) ===
+API_URL_PRIMARY = "https://art-dna-api-521843227251.europe-west1.run.app/predict_cbm"
+API_URL_FALLBACK = "http://localhost:8000/predict_cbm"
 
-# === Set up API endpoints for similarity search ===
-if os.getenv("USE_GCS", "false").lower() == "true":
-    SIMILARITY_API_URL_PRIMARY = (
-        "https://art-dna-api-521843227251.europe-west1.run.app/predict_kmeans"
-    )
-    SIMILARITY_API_URL_FALLBACK = "http://localhost:8000/predict_kmeans"
-else:
-    SIMILARITY_API_URL_PRIMARY = "http://localhost:8000/predict_kmeans"
-    SIMILARITY_API_URL_FALLBACK = (
-        "https://art-dna-api-521843227251.europe-west1.run.app/predict_kmeans"
-    )
+SIMILARITY_API_URL_PRIMARY = (
+    "https://art-dna-api-521843227251.europe-west1.run.app/predict_kmeans"
+)
+SIMILARITY_API_URL_FALLBACK = "http://localhost:8000/predict_kmeans"
 
 
 # === Reusable function to send image to any API (style or similarity) ===
