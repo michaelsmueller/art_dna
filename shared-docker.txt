@@ -1,7 +1,7 @@
 pillow
 numpy
 pandas
-scikit-learn
+scikit-learn==1.6.1
 
 # VGG16 model / serving
 tensorflow-cpu==2.19.0

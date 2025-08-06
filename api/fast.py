@@ -10,11 +10,15 @@ Provides endpoints for:
 - Educational art style descriptions
 """
 
-from typing import Any, Dict, Optional
-
-import io
+# Suppress TensorFlow and HuggingFace warnings FIRST
 import os
+
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"  # Suppress INFO and WARNING logs
+os.environ["TRANSFORMERS_VERBOSITY"] = "error"  # Suppress HuggingFace warnings
+
+from typing import Any, Dict
 import numpy as np
+import io
 
 from fastapi import FastAPI, File, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -32,8 +36,6 @@ import clip
 
 import uuid
 import time
-
-import base64
 
 app = FastAPI()
 
@@ -67,6 +69,7 @@ def load_vgg16_model():
 
     try:
         from tensorflow.keras.models import load_model
+
         import subprocess
         import tempfile
 
@@ -199,7 +202,7 @@ def load_cbm_model():
         )
 
         # Load checkpoint
-        checkpoint_path = "model/cbm/models/cbm_weighted_best.pth"
+        checkpoint_path = "model/cbm/cbm_weighted_best.pth"
         checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
         cbm_model.load_state_dict(checkpoint["model_state_dict"])
         cbm_model.eval()
