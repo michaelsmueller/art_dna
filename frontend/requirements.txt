@@ -1,4 +1,5 @@
 -r ../shared.txt
 plotly
+python-dotenv
 streamlit
 requests
