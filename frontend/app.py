@@ -286,11 +286,6 @@ with main_container:
 if uploaded_file and analyze_clicked:
     # Show loading spinner and perform analysis
     with st.spinner("Analyzing artwork..."):
-        # Debug: Show which URLs we're trying
-        st.write(f"DEBUG - Primary URL: {API_URL_PRIMARY}")
-        st.write(f"DEBUG - Fallback URL: {API_URL_FALLBACK}")
-        st.write(f"DEBUG - USE_GCS env var: {os.getenv('USE_GCS', 'not set')}")
-
         result, used_url = send_image_to_api(
             img_bytes,
             img_name,
@@ -311,11 +306,7 @@ if uploaded_file and analyze_clicked:
                 top_genre = max(result["scores"].items(), key=lambda x: x[1])[0]
                 st.session_state["selected_genre"] = top_genre
         else:
-            # Debug information
-            st.error(f"No predictions found. API result: {result}")
-            if result:
-                st.error(f"Result keys: {list(result.keys())}")
-            st.error(f"Used URL: {used_url}")
+            st.error("No predictions found.")
             st.stop()
 
         # Use session-based k-means similarity (no re-upload needed)
