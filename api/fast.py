@@ -83,6 +83,7 @@ def load_vgg16_model():
                 gcs_path = (
                     "gs://art-dna-ml-data/models/vgg16/model_3_vgg16_finetuned.keras"
                 )
+                print(f"☁️  Downloading from: {gcs_path}")
                 subprocess.run(["gsutil", "cp", gcs_path, tmp_file.name], check=True)
                 model_path = tmp_file.name
         else:
@@ -181,7 +182,7 @@ SESSION_TIMEOUT = 600  # 10 minutes
 
 
 def load_cbm_model():
-    """Lazy load CBM model on first request"""
+    """Load CBM model with conditional GCS/local loading"""
     global cbm_model, cbm_thresholds, cbm_concept_names, cbm_transform
 
     if cbm_model is not None:
@@ -192,6 +193,8 @@ def load_cbm_model():
     try:
         # Import CBM model (avoid import at module level)
         import sys
+        import subprocess
+        import tempfile
 
         sys.path.append(".")
         from model.cbm_model import ConceptBottleneckModel
@@ -201,8 +204,22 @@ def load_cbm_model():
             n_concepts=37, n_classes=18, backbone_weights=None, freeze_backbone=False
         )
 
+        # Check if running in cloud environment
+        use_gcs = os.getenv("USE_GCS", "false").lower() == "true"
+
+        if use_gcs:
+            print("☁️  Downloading CBM model from GCS...")
+            # Download from GCS to temporary location
+            with tempfile.NamedTemporaryFile(suffix=".pth", delete=False) as tmp_file:
+                gcs_path = "gs://art-dna-ml-models/cbm/production/cbm_weighted_best.pth"
+                print(f"☁️  Downloading from: {gcs_path}")
+                subprocess.run(["gsutil", "cp", gcs_path, tmp_file.name], check=True)
+                checkpoint_path = tmp_file.name
+        else:
+            print("💻 Loading CBM model from local file...")
+            checkpoint_path = "model/cbm/cbm_weighted_best.pth"
+
         # Load checkpoint
-        checkpoint_path = "model/cbm/cbm_weighted_best.pth"
         checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
         cbm_model.load_state_dict(checkpoint["model_state_dict"])
         cbm_model.eval()

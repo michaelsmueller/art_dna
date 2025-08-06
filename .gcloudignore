@@ -1,4 +1,7 @@
-# Large model files (but keep legacy vgg16_model.keras)
+# Large model files (downloaded from GCS in cloud)
+model/vgg16/vgg16_model.keras
+model/vgg16/model_3_vgg16_finetuned.keras
+model/cbm/cbm_weighted_best.pth
 *.h5
 *.ckpt
 *.safetensors
