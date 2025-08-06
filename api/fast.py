@@ -2,8 +2,12 @@
 Art DNA API - FastAPI backend for art style classification.
 
 Provides endpoints for:
-- Image prediction using VGG16 model
-- Genre descriptions for educational context
+- VGG16 CNN style prediction with probabilities
+- CBM interpretable classification with visual concepts
+- CLIP + K-means clustering for style prediction and similarity
+- DeiT transformer visual similarity search
+- Grad-CAM heatmaps for explainable AI visualizations
+- Educational art style descriptions
 """
 
 from typing import Any, Dict, Optional
@@ -14,7 +18,6 @@ import numpy as np
 
 from fastapi import FastAPI, File, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from tensorflow.keras.models import load_model
 from PIL import Image, UnidentifiedImageError
 
 from api.descriptions import DESCRIPTIONS
@@ -49,10 +52,51 @@ if os.getenv("USE_GCS", "false").lower() != "true":
     app.mount("/static", StaticFiles(directory="."), name="static")
     print("📁 Static files mounted for local development")
 
-# Load model and class names once at startup
-from tensorflow.keras.models import load_model
+# VGG16 model variables (loaded at startup)
+vgg16_model = None
 
-model = load_model("model/art_style_classifier.keras", compile=False)
+
+def load_vgg16_model():
+    """Load VGG16 model with conditional GCS/local loading"""
+    global vgg16_model
+
+    if vgg16_model is not None:
+        return  # Already loaded
+
+    print("🎨 Loading VGG16 model...")
+
+    try:
+        from tensorflow.keras.models import load_model
+        import subprocess
+        import tempfile
+
+        # Check if running in cloud environment
+        use_gcs = os.getenv("USE_GCS", "false").lower() == "true"
+
+        if use_gcs:
+            print("☁️  Downloading VGG16 model from GCS...")
+            # Download from GCS to temporary location
+            with tempfile.NamedTemporaryFile(suffix=".keras", delete=False) as tmp_file:
+                gcs_path = (
+                    "gs://art-dna-ml-data/models/vgg16/model_3_vgg16_finetuned.keras"
+                )
+                subprocess.run(["gsutil", "cp", gcs_path, tmp_file.name], check=True)
+                model_path = tmp_file.name
+        else:
+            print("💻 Loading VGG16 model from local file...")
+            model_path = "model/vgg16/vgg16_model.keras"
+
+        # Load the model
+        vgg16_model = load_model(model_path, compile=False)
+
+        print("✅ VGG16 model loaded successfully!")
+
+    except Exception as e:
+        print(f"❌ Failed to load VGG16 model: {e}")
+        raise HTTPException(status_code=503, detail=f"VGG16 model failed to load: {e}")
+
+
+# Load class names
 with open("model/class_names.txt", "r", encoding="utf-8") as f:
     class_names = [line.strip() for line in f.readlines()]
 
@@ -192,10 +236,14 @@ def load_cbm_model():
         raise HTTPException(status_code=503, detail=f"CBM model failed to load: {e}")
 
 
-# Load CBM model at startup
+# Load models at startup
 print("🧠 Loading CBM model at startup...")
 load_cbm_model()
 print("✅ CBM model ready for requests!")
+
+print("🎨 Loading VGG16 model at startup...")
+load_vgg16_model()
+print("✅ VGG16 model ready for requests!")
 
 
 def cleanup_expired_sessions():
@@ -277,13 +325,13 @@ def generate_gradcam_image(img_tensor, target_class, target_type="style"):
 
 
 @app.get("/")
-def root():
+def health_check():
     """Health check endpoint"""
     return {"greeting": "Hello"}
 
 
 @app.get("/describe")
-def describe_genres(
+def describe_art_styles(
     genres: str = Query(...), audience: str = Query("adult")
 ) -> Dict[str, Any]:
     """Get descriptions for one or more art genres"""
@@ -320,11 +368,11 @@ def describe_genres(
 
 
 @app.post("/predict")
-def predict(image: UploadFile = File(...)) -> Dict[str, Dict[str, float]]:
+def predict_with_vgg16(image: UploadFile = File(...)) -> Dict[str, Dict[str, float]]:
     """
-    Predict art style from uploaded image.
+    Predict art style using fine-tuned VGG16 CNN model.
 
-    Returns probabilities for all 18 art genres.
+    Returns probability scores for all 18 art genres.
     """
     try:
         # Read and decode the uploaded image
@@ -337,7 +385,7 @@ def predict(image: UploadFile = File(...)) -> Dict[str, Dict[str, float]]:
         array = np.expand_dims(array, axis=0)
 
         # Predict
-        probs = model.predict(array)[0]
+        probs = vgg16_model.predict(array)[0]
         predictions = {
             class_names[i]: float(round(probs[i], 4)) for i in range(len(class_names))
         }
@@ -351,10 +399,14 @@ def predict(image: UploadFile = File(...)) -> Dict[str, Dict[str, float]]:
 
 
 @app.post("/similar")
-def find_similar_artworks(
+def find_similar_with_deit(
     image: UploadFile = File(...), top_k: int = Query(5, ge=1, le=20)
 ) -> Dict[str, Any]:
-    """Find visually similar artworks using DeiT embeddings"""
+    """
+    Find visually similar artworks using DeiT transformer embeddings.
+
+    Returns the most similar paintings from the dataset based on visual features.
+    """
     try:
         # Read and process uploaded image
         image_bytes = image.file.read()
@@ -377,9 +429,12 @@ def find_similar_artworks(
 
 
 @app.post("/predict_cbm")
-def predict_cbm(image: UploadFile = File(...)) -> Dict[str, Any]:
+def predict_with_cbm(image: UploadFile = File(...)) -> Dict[str, Any]:
     """
-    Predict art style using CBM model with interpretable concepts.
+    Predict art style using Concept Bottleneck Model (CBM) with interpretable visual concepts.
+
+    Returns threshold-adjusted style scores and top visual concept activations.
+    Enables explainable AI through concept-based reasoning.
     """
 
     try:
@@ -446,7 +501,7 @@ def predict_cbm(image: UploadFile = File(...)) -> Dict[str, Any]:
 
 
 @app.get("/predict_kmeans/{session_id}")
-def predict_kmeans_session(session_id: str) -> Dict[str, Any]:
+def predict_with_clip_kmeans_session(session_id: str) -> Dict[str, Any]:
     """
     Get k-means predictions and similar images using cached image from CBM session.
     """
@@ -512,9 +567,12 @@ def predict_kmeans_session(session_id: str) -> Dict[str, Any]:
 
 
 @app.post("/predict_kmeans")
-def predict_kmeans(image: UploadFile = File(...)) -> Dict[str, Any]:
+def predict_with_clip_kmeans(image: UploadFile = File(...)) -> Dict[str, Any]:
     """
-    Predict top-5 art styles and find 5 visually similar paintings using CLIP + PCA + KMeans.
+    Predict art style and find similar artworks using CLIP + K-means clustering.
+
+    Returns style predictions based on CLIP embeddings and K-means clustering,
+    plus visually similar paintings from the same style cluster.
     """
     try:
         # Read and preprocess the uploaded image
@@ -573,7 +631,7 @@ def predict_kmeans(image: UploadFile = File(...)) -> Dict[str, Any]:
 
 
 @app.get("/gradcam/{session_id}/style/{style_name}")
-def get_style_gradcam(session_id: str, style_name: str):
+def get_style_heatmap(session_id: str, style_name: str):
     """Generate Grad-CAM heatmap for a specific style prediction"""
 
     # Check session exists and isn't expired
@@ -617,7 +675,7 @@ def get_style_gradcam(session_id: str, style_name: str):
 
 
 @app.get("/gradcam/{session_id}/concept/{concept_name}")
-def get_concept_gradcam(session_id: str, concept_name: str):
+def get_concept_heatmap(session_id: str, concept_name: str):
     """Generate Grad-CAM heatmap for a specific concept"""
 
     # Check session exists and isn't expired

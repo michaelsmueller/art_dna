@@ -1,5 +1,4 @@
-# Large model files (but keep art_style_classifier.keras)
-model/art_style_classifier_legacy.keras
+# Large model files (but keep legacy vgg16_model.keras)
 *.h5
 *.ckpt
 *.safetensors

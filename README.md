@@ -29,7 +29,8 @@ Analyze artwork styles across **18 art genres** using interpretable AI models. U
 - Python 3.10+
 - Docker (for containerized deployment)
 - Download [Best Artworks of All Time](https://www.kaggle.com/datasets/ikarus777/best-artworks-of-all-time/data) dataset
-- Download `cbm_weighted_best.pth` model (please contact team)
+- Download `cbm_weighted_best.pth` CBM model (please contact team)
+- Download `vgg16_model.keras` fine-tuned VGG16 model (please contact team)
 
 ## Setup & Run
 
@@ -55,11 +56,13 @@ Open `http://localhost:8501` to upload images and predict art styles.
 ## API Endpoints
 
 **Production**: `https://art-dna-api-521843227251.europe-west1.run.app`
+**Localhost** `http://127.0.0.1:8000`
 
-- `POST /predict_cbm` - Explainable classification with visual concepts
-- `POST /predict_kmeans` - CLIP + K-means clustering for style prediction
+- `POST /predict` - VGG16 CNN style prediction with probabilities
+- `POST /predict_cbm` - CBM interpretable classification with visual concepts
+- `POST /predict_kmeans` - CLIP + K-means clustering for style prediction and similarity
 - `GET /predict_kmeans/{session_id}` - Session-based CLIP + K-means prediction
-- `POST /similar` - Visual similarity search using DeiT embeddings
+- `POST /similar` - DeiT transformer visual similarity search
 - `GET /gradcam/{session_id}/style/{style}` - Style heatmap visualization
 - `GET /gradcam/{session_id}/concept/{concept}` - Concept heatmap visualization
 - `GET /describe` - Educational genre descriptions
