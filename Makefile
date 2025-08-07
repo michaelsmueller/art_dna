@@ -69,10 +69,16 @@ build_cloud:
 deploy_to_cloud_run:
 	gcloud run deploy \
 		--image ${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT}/${ARTIFACTSREPO}/${IMAGE}:prod \
-		--memory ${MEMORY} \
-		--timeout 900 \
 		--region ${GCP_REGION} \
-		--set-env-vars USE_GCS=true
+		--platform managed \
+		--memory ${MEMORY} \
+		--cpu 2 \
+		--concurrency 1 \
+		--timeout 900 \
+		--min-instances 1 \
+		--max-instances 5 \
+		--set-env-vars USE_GCS=true \
+		--cpu-boost
 
 # === VERTEX AI TRAINING ===
 
